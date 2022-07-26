@@ -1,0 +1,24 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	data = 
+	{
+		Walls = 
+		[
+			resource:"models/walls/dungeon/brickwall_closed.vmdl",
+			resource:"models/walls/dungeon/brickwall_lit.vmdl",
+			resource:"models/walls/dungeon/brickwall_closed.vmdl",
+			resource:"models/walls/dungeon/brickwall_closed.vmdl",
+		]
+		PassableWalls = 
+		[
+			resource:"models/walls/dungeon/brickwall_broken.vmdl",
+			resource:"models/walls/dungeon/trap_swinging_axe.vmdl",
+		]
+		FloorModels = 
+		[
+			resource:"models/walls/dungeon/floor_tiles.vmdl",
+			resource:"models/walls/dungeon/floor_tiles_left.vmdl",
+			resource:"models/walls/dungeon/floor_tiles_right.vmdl",
+		]
+	}
+}
