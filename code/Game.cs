@@ -17,11 +17,37 @@ namespace htkgttt;
 /// You can use this to create things like HUDs and declare which player class
 /// to use for spawned players.
 /// </summary>
-public partial class MyGame : Sandbox.Game
+public partial class HTKGGame : Sandbox.Game
 {
-	public MyGame()
-	{
+	[Net]public  float CurrentTimerTime { get; set; } = 0f;
 
+	[Net]public bool WonGame { get; set; }
+
+	[Net]public string WinningPlayer { get; set; }
+
+	public HTKGGame()
+	{
+		if ( IsClient )
+		{
+			HTKGHUD hud = new HTKGHUD();
+		}
+	}
+
+	public override void Simulate( Client cl )
+	{
+		base.Simulate( cl );
+
+		if ( !IsClient && !WonGame )
+		{
+			CurrentTimerTime = Time.Now;
+		}
+	}
+
+	[ConCmd.Server]
+	public void KingSatOnToilet()
+	{
+		(Game.Current as HTKGGame).WonGame = true;
+		(Game.Current as HTKGGame).WinningPlayer = ConsoleSystem.Caller.Pawn.Client.Name;
 	}
 
 	public override void PostCameraSetup( ref CameraSetup camSetup )
@@ -66,15 +92,18 @@ public partial class MyGame : Sandbox.Game
 		client.Pawn = pawn;
 
 		// Get all of the spawnpoints
-		var spawnpoint = Entity.All.OfType<MazeCreator>().FirstOrDefault().StartPos;
-
-		var spawnpoints = Entity.All.OfType<SpawnPoint>();
+		if ( Entity.All.OfType<MazeCreator>().Count() != 0 )
+		{
+			var spawnpoint = Entity.All.OfType<MazeCreator>().FirstOrDefault().StartPos;
+		}
+		
 
 		foreach ( PointLightEntity light in Entity.All.OfType<PointLightEntity>() )
 		{
-			light.Components.Create<LightCullComponent>();
+			light.Components.GetOrCreate<LightCullComponent>();
 		}
 
+		var spawnpoints = Entity.All.OfType<SpawnPoint>();
 		// chose a random one
 		var randomSpawnPoint = spawnpoints.OrderBy( x => Guid.NewGuid() ).FirstOrDefault();
 

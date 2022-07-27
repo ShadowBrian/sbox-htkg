@@ -1,26 +1,27 @@
 {
-  "Title": "Help The King Get To The Toilet",
+  "Title": "Help Get The King To The Toilet",
   "Type": "game",
   "Org": "shadb",
   "Ident": "htkg",
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
-  "ResourcePaths": null,
+  "ResourcePaths": [
+    "/fonts/*",
+    "/resources/*"
+  ],
   "HasCode": true,
   "CodePath": "/code/",
   "RootNamespace": "Sandbox",
   "Metadata": {
-    "MaxPlayers": 2,
+    "MaxPlayers": 16,
     "MinPlayers": 1,
     "GameNetworkType": "Multiplayer",
-    "MapSelect": "Unrestricted",
-    "MapList": [
-      "facepunch.construct"
-    ],
-    "RankType": "None",
-    "PerMapRanking": false,
-    "LeaderboardType": "None",
+    "MapSelect": "Tagged",
+    "MapList": [],
+    "RankType": "Best",
+    "PerMapRanking": true,
+    "LeaderboardType": "Ascending",
     "Collision": {
       "Defaults": {
         "solid": "Collide",
@@ -79,7 +80,7 @@
       "SoftBodyIterations": 1,
       "SoftBodySubsteps": 1
     },
-    "GameCategory": "None",
+    "GameCategory": "Parkour",
     "ControlModes": {
       "Keyboard": true,
       "Gamepad": true

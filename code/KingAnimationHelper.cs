@@ -5,9 +5,14 @@ namespace Sandbox
 	/// <summary>
 	/// A struct to help you set up your citizen based animations
 	/// </summary>
-	public struct KingAnimationHelper
+	public class KingAnimationHelper : BaseNetworkable
 	{
 		AnimatedEntity Owner;
+
+		public KingAnimationHelper()
+		{
+
+		}
 
 		public KingAnimationHelper( AnimatedEntity entity )
 		{

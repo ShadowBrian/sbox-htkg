@@ -12,7 +12,9 @@ public partial class King : AnimatedEntity
 
 	ThroneToilet toil;
 
-	KingAnimationHelper animHelper;
+	[Net, Predicted]public KingAnimationHelper animHelper { get; set; }
+
+	[Net] bool SetupDone { get; set; }
 
 	/// <summary>
 	/// Called when the entity is first created 
@@ -54,6 +56,7 @@ public partial class King : AnimatedEntity
 		toil = All.OfType<ThroneToilet>().FirstOrDefault();
 
 		animHelper = new KingAnimationHelper( this );
+		SetupDone = true;
 	}
 
 	[Net] public Vector3 InputVelocity { get; set; }
@@ -85,6 +88,11 @@ public partial class King : AnimatedEntity
 	[Event.Tick.Server]
 	public void Tick()
 	{
+		if(!SetupDone)
+		{
+			return;
+		}
+
 		if(GroundEntity is KillTrigger )
 		{
 			OnKilled();
@@ -94,7 +102,7 @@ public partial class King : AnimatedEntity
 		animHelper.WithVelocity( Velocity );
 		animHelper.WithWishVelocity( InputVelocity );
 
-		animHelper.DuckLevel = MathX.Lerp( animHelper.DuckLevel,AssociatedPlayer.GetAnimParameterFloat( "duck" ),0.1f);
+		animHelper.DuckLevel = MathX.Lerp( animHelper.DuckLevel, AssociatedPlayer.GetAnimParameterFloat( "duck" ), 0.1f );
 
 		animHelper.IsGrounded = GroundEntity != null;
 
@@ -105,7 +113,7 @@ public partial class King : AnimatedEntity
 		}
 
 
-		if ( Vector3.DistanceBetween( Position, toil.Position ) < 55f )
+		if ( Vector3.DistanceBetween( Position, toil.Position ) < 55f && !OnToilet && IsServer )
 		{
 			Parent = toil;
 			Position = Vector3.Lerp( Position, toil.Position, 0.1f );
@@ -116,6 +124,10 @@ public partial class King : AnimatedEntity
 			animHelper.SitPose = 1f;
 
 			animHelper.SitHeightOffset = 7.5f;
+
+			(Game.Current as HTKGGame).KingSatOnToilet();
+
+			GameServices.SubmitScore( Owner.Client.PlayerId, (Game.Current as HTKGGame).CurrentTimerTime );
 
 			OnToilet = true;
 		}

@@ -15,8 +15,6 @@ namespace htkgttt
 			base.Spawn();
 
 			SetModel( "models/items/compass/compass.vmdl" );
-
-			Log.Trace( "Made a compass!" );
 		}
 
 		public override void ActiveStart( Entity ent )

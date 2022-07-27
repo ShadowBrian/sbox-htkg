@@ -110,7 +110,7 @@ namespace htkgttt
 
 						if ( passableWall.GetAttachment("blade").HasValue )
 						{
-							Log.Trace( "Bladed trap found!" );
+							//Log.Trace( "Bladed trap found!" );
 							passableWall.Components.Add( new BladeComponent() );
 						}
 

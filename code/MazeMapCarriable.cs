@@ -22,14 +22,15 @@ namespace htkgttt
 
 			SetModel( "models/items/map/map.vmdl" );
 
-			width = MazeCreator.Instance.width;
-			height = MazeCreator.Instance.height;
+			if ( MazeCreator.Instance != null )
+			{
+				width = MazeCreator.Instance.width;
+				height = MazeCreator.Instance.height;
 
-			maze = MazeCreator.Instance.maze;
+				maze = MazeCreator.Instance.maze;
 
-			Generate();
-
-			Log.Trace( "Made a map!" );
+				Generate();
+			}
 		}
 
 		public override void SimulateAnimator( PawnAnimator anim )
@@ -47,7 +48,6 @@ namespace htkgttt
 			anim.AimBodyWeight = 1.0f;
 		}
 
-		//[Event.Tick.Server]
 		public void Generate()
 		{
 			bool PickedStart = false;

@@ -141,7 +141,7 @@ public partial class Pawn : Player
 		{
 			AssociatedKing.AssociatedPlayer = this;
 
-			if ( Vector3.DistanceBetween( AssociatedKing.Position, Position ) > 40f && Vector3.DistanceBetween( AssociatedKing.Position, Position ) < 55f )
+			if ( Vector3.DistanceBetween( AssociatedKing.Position, Position ) > 40f && Vector3.DistanceBetween( AssociatedKing.Position, Position ) < 55f && GroundEntity != null )
 			{
 				AssociatedKing.Velocity = Vector3.Lerp( AssociatedKing.Velocity, - (AssociatedKing.Position - Position) * Time.Delta * 62f, 0.9f );
 			}
