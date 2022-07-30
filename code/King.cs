@@ -12,7 +12,7 @@ public partial class King : AnimatedEntity
 
 	ThroneToilet toil;
 
-	[Net, Predicted]public KingAnimationHelper animHelper { get; set; }
+	[Net, Predicted] public KingAnimationHelper animHelper { get; set; }
 
 	[Net] bool SetupDone { get; set; }
 
@@ -63,10 +63,10 @@ public partial class King : AnimatedEntity
 
 	[Net] public Vector3 LookDir { get; set; }
 
-	[Net, Predicted] public bool BladeHit {  get; set; }
+	[Net, Predicted] public bool BladeHit { get; set; }
 
-	bool OnToilet;
-	 
+	[Net] public bool OnToilet { get; set; }
+
 	public override void OnKilled()
 	{
 		var spawnpoints = Entity.All.OfType<SpawnPoint>();
@@ -88,12 +88,12 @@ public partial class King : AnimatedEntity
 	[Event.Tick.Server]
 	public void Tick()
 	{
-		if(!SetupDone)
+		if ( !SetupDone )
 		{
 			return;
 		}
 
-		if(GroundEntity is KillTrigger )
+		if ( GroundEntity is KillTrigger )
 		{
 			OnKilled();
 		}
@@ -115,6 +115,18 @@ public partial class King : AnimatedEntity
 
 		if ( Vector3.DistanceBetween( Position, toil.Position ) < 55f && !OnToilet && IsServer )
 		{
+			if ( (Game.Current as HTKGGame).CurrentTimerTime > 20f )
+			{
+				GameServices.SubmitScore( AssociatedPlayer.Client.PlayerId, (Game.Current as HTKGGame).CurrentTimerTime );
+
+				GameServices.EndGame();
+			}
+
+			OnToilet = true;
+		}
+
+		if ( OnToilet )
+		{
 			Parent = toil;
 			Position = Vector3.Lerp( Position, toil.Position, 0.1f );
 			Rotation = Rotation.Slerp( Rotation, toil.Rotation, 1f );
@@ -124,12 +136,6 @@ public partial class King : AnimatedEntity
 			animHelper.SitPose = 1f;
 
 			animHelper.SitHeightOffset = 7.5f;
-
-			(Game.Current as HTKGGame).KingSatOnToilet();
-
-			GameServices.SubmitScore( Owner.Client.PlayerId, (Game.Current as HTKGGame).CurrentTimerTime );
-
-			OnToilet = true;
 		}
 
 

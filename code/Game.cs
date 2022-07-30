@@ -21,7 +21,7 @@ public partial class HTKGGame : Sandbox.Game
 {
 	[Net]public  float CurrentTimerTime { get; set; } = 0f;
 
-	[Net]public bool WonGame { get; set; }
+	[Net, Predicted]public bool WonGame { get; set; }
 
 	[Net]public string WinningPlayer { get; set; }
 
@@ -33,6 +33,9 @@ public partial class HTKGGame : Sandbox.Game
 		}
 	}
 
+	bool TimerRebootStarted;
+	TimeSince RebootTimer;
+
 	public override void Simulate( Client cl )
 	{
 		base.Simulate( cl );
@@ -40,14 +43,24 @@ public partial class HTKGGame : Sandbox.Game
 		if ( !IsClient && !WonGame )
 		{
 			CurrentTimerTime = Time.Now;
+
+		}else if( !IsClient && !TimerRebootStarted )
+		{
+			TimerRebootStarted = true;
+			RebootTimer = 0f;
+		}
+
+		if ( !IsClient && TimerRebootStarted && RebootTimer > 10f )
+		{
+			Global.ChangeLevel( Global.MapName );
 		}
 	}
 
 	[ConCmd.Server]
-	public void KingSatOnToilet()
+	public void KingSatOnToilet(string player)
 	{
 		(Game.Current as HTKGGame).WonGame = true;
-		(Game.Current as HTKGGame).WinningPlayer = ConsoleSystem.Caller.Pawn.Client.Name;
+		(Game.Current as HTKGGame).WinningPlayer = player;
 	}
 
 	public override void PostCameraSetup( ref CameraSetup camSetup )

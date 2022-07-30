@@ -14,7 +14,11 @@ namespace htkgttt
 
 		int width, height;
 
+		float scale;
+
 		public ModelEntity Compass;
+
+		[Net]Entity MapParentEnt {  get; set; }
 
 		public override void Spawn()
 		{
@@ -29,6 +33,8 @@ namespace htkgttt
 
 				maze = MazeCreator.Instance.maze;
 
+				scale = MazeCreator.Instance.scale * 0.0075f * 0.7f;
+				MapParentEnt = new Entity();
 				Generate();
 			}
 		}
@@ -48,6 +54,16 @@ namespace htkgttt
 			anim.AimBodyWeight = 1.0f;
 		}
 
+		[Event.Tick]
+		public void DebugTick()
+		{
+			if ( MapParentEnt != null && IsServer)
+			{
+				DebugOverlay.Line( MapParentEnt.Position, MapParentEnt.Position + Vector3.Up );
+				DebugOverlay.Box( MapParentEnt, Color.Red );
+			}
+		}
+
 		public void Generate()
 		{
 			bool PickedStart = false;
@@ -60,16 +76,22 @@ namespace htkgttt
 
 			string wallmodel = "models/walls/map_wall.vmdl";
 
-			float scale = 0.75f;
+			Vector3 totalPositions = new Vector3();
+
+			float cellnums = 0f;
+
+			List<Entity> spawnedWalls = new List<Entity>();
+
 
 			for ( int i = 0; i < width; ++i )
 			{
 				for ( int j = 0; j < height; ++j )
 				{
 					var cell = maze[i, j];
-					var mapRotation = GetAttachment( "mapSpot" ).Value.Rotation;
-					var position = GetAttachment("mapSpot").Value.Position + mapRotation*new Vector3( -width / 2f + i * scale, -height / 2f + j * scale, 0f );
-
+					var mapRotation = Rotation.Identity; //GetAttachment( "mapSpot" ).Value.Rotation;
+					var position = new Vector3( -width / 2f + (float)i * scale, (-height / 2f + (float)j * scale), 0f );//GetAttachment("mapSpot").Value.Position + mapRotation*
+					totalPositions += position;
+					cellnums++;
 					if ( i == 0 )
 					{
 						if ( !PickedEnd && j == width - 1 )
@@ -79,13 +101,13 @@ namespace htkgttt
 						}
 					}
 
-					if ( cell.HasFlag( WallState.UP ) )
+					if ( cell.HasFlag( WallState.UP ) ) 
 					{
 
 
 						if ( !ThisIsEnd )
 						{
-							DebugOverlay.Line( position + (mapRotation* new Vector3( 0.5f, 0.5f, 0 ) * scale), position + (mapRotation * new Vector3( -0.5f, 0.5f, 0 ) * scale) );
+							DebugOverlay.Line( position + (mapRotation * new Vector3( 0.5f, 0.5f, 0 ) * scale), position + (mapRotation * new Vector3( -0.5f, 0.5f, 0 ) * scale) );
 
 							ModelEntity wall = new ModelEntity( wallmodel );
 
@@ -94,9 +116,12 @@ namespace htkgttt
 							wall.Position = position + mapRotation * (new Vector3( 0, 0.5f, 0 ) * scale);
 							wall.Scale = scale / 5f;
 
-							wall.SetParent( this );
+							//wall.SetParent( MapParentEnt );
 
-							wall.LocalRotation = Rotation.From( new Angles( -90, 0, 0 ) );
+							//wall.LocalRotation = Rotation.From( new Angles( -90, 0, 0 ) );
+							wall.Rotation = Rotation.From( new Angles( 0, -90, 0 ) );
+
+							spawnedWalls.Add( wall );
 						}
 						else
 						{
@@ -114,9 +139,9 @@ namespace htkgttt
 
 						wall.Position = position + mapRotation * (new Vector3( -0.5f, 0, 0 ) * scale);
 						wall.Scale = scale / 5f;
-						wall.SetParent( this );
-
-						wall.LocalRotation = Rotation.From( new Angles( 0, 0, 90 ) ) * Rotation.From( new Angles( -90, 0, 0 ) );
+						//wall.SetParent( MapParentEnt );
+						spawnedWalls.Add( wall );
+						//wall.LocalRotation = Rotation.From( new Angles( 0, 0, 90 ) );// * Rotation.From( new Angles( -90, 0, 0 ) );
 					}
 
 					if ( i == width - 1 )
@@ -133,9 +158,9 @@ namespace htkgttt
 
 							wall.Position = position + mapRotation * (new Vector3( 0.5f, 0, 0 ) * scale);
 							wall.Scale = scale / 5f;
-							wall.SetParent( this );
-
-							wall.LocalRotation = Rotation.From( new Angles(0, 0, -90 ) ) * Rotation.From( new Angles( -90, 0, 0 ) );
+							//wall.SetParent( MapParentEnt );
+							spawnedWalls.Add( wall );
+							//wall.LocalRotation = Rotation.From( new Angles( 0, 0, -90 ) );// * Rotation.From( new Angles( -90, 0, 0 ) );
 						}
 					}
 
@@ -161,10 +186,11 @@ namespace htkgttt
 								wall.Position = position + mapRotation * (new Vector3( 0, -0.5f, 0 ) * scale);
 								wall.Scale = scale / 5f;
 
-								
-								wall.SetParent( this );
 
-								wall.LocalRotation = Rotation.From( new Angles( -90, 0, 0 ) );
+								//wall.SetParent( MapParentEnt );
+								spawnedWalls.Add( wall );
+								wall.Rotation = Rotation.From( new Angles( 0, 90, 0 ) );
+								//wall.LocalRotation = Rotation.From( new Angles( -90, 0, 0 ) );
 							}
 							else
 							{
@@ -174,6 +200,22 @@ namespace htkgttt
 					}
 				}
 			}
+
+			totalPositions /= cellnums;
+
+			MapParentEnt.Position = totalPositions;
+
+			foreach ( var item in spawnedWalls )
+			{
+				item.SetParent( MapParentEnt );
+			}
+
+			MapParentEnt.SetParent( this );
+			MapParentEnt.Position = GetAttachment( "mapSpot" ).Value.Position;
+			MapParentEnt.Rotation = GetAttachment( "mapSpot" ).Value.Rotation;
+
+			MapParentEnt.Position = this.WorldSpaceBounds.Center + MapParentEnt.Rotation.Up*0.75f;
 		}
+
 	}
 }

@@ -88,6 +88,8 @@ public partial class Pawn : Player
 		//SetAnimGraph( "models/characters/king.vanmgrph" );
 	}
 
+	bool Won;
+
 	/// <summary>
 	/// Called every tick, clientside and serverside.
 	/// </summary>
@@ -105,6 +107,15 @@ public partial class Pawn : Player
 		}
 
 		ActiveChild.Simulate( cl );
+
+		if ( IsServer )
+		{
+			if ( AssociatedKing.OnToilet && !Won)
+			{
+				(Game.Current as HTKGGame).KingSatOnToilet( Client.Name );
+				Won = true;
+			}
+		}
 
 		if ( Input.Pressed( InputButton.SlotNext ) || Input.MouseWheel > 0 )
 		{

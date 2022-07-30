@@ -26,7 +26,7 @@ namespace htkgttt
 		public int height = 10;
 
 		[Property( "Maze Size", "Size of the maze" )]
-		float scale { get; set; } = 1024f;
+		public float scale { get; set; } = 1024f;
 
 		public List<Entity> GeneratedItems { get; set; } = new List<Entity>();
 
@@ -90,7 +90,7 @@ namespace htkgttt
 			bool ThisIsEnd = false;
 			bool ThisIsStart = false;
 
-			Rand.SetSeed( (int)MathF.Floor( System.DateTime.Now.DayOfYear / 7f ) + System.DateTime.Now.Year + 2);
+			Rand.SetSeed( (int)MathF.Floor( System.DateTime.Now.DayOfYear / 7f ) + System.DateTime.Now.Year + 2 );
 
 			if ( PossibleWalls != "" )
 
@@ -108,7 +108,7 @@ namespace htkgttt
 						passableWall.Position = position;
 						passableWall.Scale = scale / 5f;
 
-						if ( passableWall.GetAttachment("blade").HasValue )
+						if ( passableWall.GetAttachment( "blade" ).HasValue )
 						{
 							//Log.Trace( "Bladed trap found!" );
 							passableWall.Components.Add( new BladeComponent() );
@@ -119,11 +119,11 @@ namespace htkgttt
 						floorModel.SetModel( Rand.FromList<string>( FloorPieces, "models/walls/basic_template/basic_template_floor.vmdl" ) );
 						floorModel.SetupPhysicsFromModel( PhysicsMotionType.Static );
 						floorModel.Position = position;
-						floorModel.Rotation = Rotation.From( new Angles( 0, MathF.Round( (Rand.Float()*360) / 90 ) * 90f, 0 ) );
+						floorModel.Rotation = Rotation.From( new Angles( 0, MathF.Round( (Rand.Float() * 360) / 90 ) * 90f, 0 ) );
 						floorModel.Scale = scale / 5f;
 						GeneratedItems.Add( floorModel );
 
-						if(floorModel.GetModelName().Contains("left") || floorModel.GetModelName().Contains( "right" ) )
+						if ( floorModel.GetModelName().Contains( "left" ) || floorModel.GetModelName().Contains( "right" ) )
 						{
 							KillTrigger trig = new KillTrigger();
 							trig.Position = floorModel.Position;
@@ -162,7 +162,7 @@ namespace htkgttt
 
 								wall.Rotation = Rotation.From( new Angles( 0, -90, 0 ) );
 
-								if( HasLights )
+								if ( HasLights )
 								{
 									PointLightEntity light = new PointLightEntity();
 									light.Position = wall.GetAttachment( "flame" ).Value.Position;
@@ -320,7 +320,7 @@ namespace htkgttt
 							/*passableWall.Rotation = Rotation.From( new Angles( 0, -45, 0 ) );
 							passableWall.Scale = (scale / 5f) * 1.25f;*/
 
-							floorModel.SetModel( FloorPieces.First() );
+							floorModel.SetModel( FloorPieces.FirstOrDefault( "models/walls/basic_template/basic_template_floor.vmdl" ) );
 
 							passableWall.Delete();
 
@@ -331,17 +331,17 @@ namespace htkgttt
 							/*passableWall.Rotation = Rotation.From( new Angles( 0, 45, 0 ) );
 							passableWall.Scale = (scale / 5f) * 1.25f;*/
 
-							floorModel.SetModel( FloorPieces.First() );
+							floorModel.SetModel( FloorPieces.FirstOrDefault( "models/walls/basic_template/basic_template_floor.vmdl" ) );
 
 							passableWall.Delete();
 						}
 
 						if ( cell.ToString().Split( ',' ).Length == 2 )
 						{
-							floorModel.SetModel( FloorPieces.First() );
+							floorModel.SetModel( FloorPieces.FirstOrDefault( "models/walls/basic_template/basic_template_floor.vmdl" ) );
 						}
 
-						if ( cell.ToString().Split( ',' ).Length == 2 || Rand.Float() > 0.25f ) 
+						if ( cell.ToString().Split( ',' ).Length == 2 || Rand.Float() > 0.25f )
 						{
 							passableWall.Delete();
 						}
