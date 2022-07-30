@@ -93,7 +93,7 @@ namespace htkgttt
 					RebootMapTimer = 0;
 					TriggeredMapReboot = true;
 				}
-				TimerLabel.Text += "\nRestarting map in " + MathF.Round(MathF.Abs(RebootMapTimer - 10f)) + " seconds.";
+				TimerLabel.Text += "\nRestarting map in " + MathF.Round(MathF.Abs(RebootMapTimer - 20f)) + " seconds.";
 			}
 		}
 	}

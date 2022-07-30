@@ -127,6 +127,10 @@ public partial class King : AnimatedEntity
 
 		if ( OnToilet )
 		{
+			SetBodyGroup( 2, 1 );
+			SetBodyGroup( 2, 0 );
+			Leggings.SetBodyGroup( 0, 1 );
+
 			Parent = toil;
 			Position = Vector3.Lerp( Position, toil.Position, 0.1f );
 			Rotation = Rotation.Slerp( Rotation, toil.Rotation, 1f );

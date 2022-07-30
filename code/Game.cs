@@ -50,7 +50,7 @@ public partial class HTKGGame : Sandbox.Game
 			RebootTimer = 0f;
 		}
 
-		if ( !IsClient && TimerRebootStarted && RebootTimer > 10f )
+		if ( !IsClient && TimerRebootStarted && RebootTimer > 20f )
 		{
 			Global.ChangeLevel( Global.MapName );
 		}

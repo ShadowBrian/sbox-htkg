@@ -54,7 +54,7 @@ namespace htkgttt
 			anim.AimBodyWeight = 1.0f;
 		}
 
-		[Event.Tick]
+		/*[Event.Tick]
 		public void DebugTick()
 		{
 			if ( MapParentEnt != null && IsServer)
@@ -62,7 +62,7 @@ namespace htkgttt
 				DebugOverlay.Line( MapParentEnt.Position, MapParentEnt.Position + Vector3.Up );
 				DebugOverlay.Box( MapParentEnt, Color.Red );
 			}
-		}
+		}*/
 
 		public void Generate()
 		{
