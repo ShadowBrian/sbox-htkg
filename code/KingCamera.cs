@@ -68,6 +68,7 @@ namespace htkgttt
 						+ pawn.GetBoneTransform( "head" ).Rotation.Left * 10f 
 						+ pawn.GetBoneTransform( "head" ).Rotation.Forward * 8f
 						 + Input.Rotation.Forward * 8f;
+					targetPos -= Vector3.Up * 64f * pawn.GetAnimParameterFloat( "duck" );
 					targetPos += Input.Rotation.Forward * -distance;
 				}
 			}

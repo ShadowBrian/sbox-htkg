@@ -14,7 +14,7 @@
   "CodePath": "/code/",
   "RootNamespace": "Sandbox",
   "Metadata": {
-    "MaxPlayers": 16,
+    "MaxPlayers": 8,
     "MinPlayers": 1,
     "GameNetworkType": "Multiplayer",
     "MapSelect": "Tagged",

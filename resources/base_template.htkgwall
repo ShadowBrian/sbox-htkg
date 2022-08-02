@@ -13,6 +13,7 @@
 		[
 			resource:"models/walls/dungeon/brickwall_broken.vmdl",
 			resource:"models/walls/dungeon/trap_swinging_axe.vmdl",
+			resource:"models/walls/dungeon/trap_ram.vmdl",
 		]
 		FloorModels = 
 		[

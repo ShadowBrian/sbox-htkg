@@ -63,7 +63,7 @@ namespace htkgttt
 		public virtual float GetWishSpeed()
 		{
 			if ( !IsActive ) return -1;
-			return 64.0f;
+			return 55.0f;
 		}
 	}
 }

@@ -39,6 +39,54 @@ namespace htkgttt
 			}
 		}
 
+		public override void ActiveEnd( Entity ent, bool dropped )
+		{
+			//
+			// If we're just holstering, then hide us
+			//
+			if ( !dropped )
+			{
+				EnableDrawing = false;
+				foreach ( var item in MapParentEnt.Children )
+				{
+					item.EnableDrawing = false;
+				}
+			}
+		}
+
+		public override void ActiveStart( Entity ent )
+		{
+			EnableDrawing = true;
+			foreach ( var item in MapParentEnt.Children )
+			{
+				item.EnableDrawing = true;
+			}
+
+			if ( ent is Player player )
+			{
+				var animator = player.GetActiveAnimator();
+				if ( animator != null )
+				{
+					SimulateAnimator( animator );
+				}
+			}
+
+			//
+			// If we're the local player (clientside) create viewmodel
+			// and any HUD elements that this weapon wants
+			//
+			if ( IsLocalPawn )
+			{
+				DestroyViewModel();
+				DestroyHudElements();
+
+				CreateViewModel();
+				CreateHudElements();
+			}
+
+				
+		}
+
 		public override void SimulateAnimator( PawnAnimator anim )
 		{
 			anim.SetAnimParameter( "holdtype", 4 );
@@ -214,7 +262,7 @@ namespace htkgttt
 			MapParentEnt.Position = GetAttachment( "mapSpot" ).Value.Position;
 			MapParentEnt.Rotation = GetAttachment( "mapSpot" ).Value.Rotation;
 
-			MapParentEnt.Position = this.WorldSpaceBounds.Center + MapParentEnt.Rotation.Up*0.75f;
+			MapParentEnt.Position = this.WorldSpaceBounds.Center + MapParentEnt.Rotation.Up*0.75f - MapParentEnt.Rotation.Forward*0.5f + MapParentEnt.Rotation.Right * 0.5f;
 		}
 
 	}

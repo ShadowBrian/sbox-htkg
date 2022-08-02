@@ -1,6 +1,7 @@
 ﻿using Sandbox;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace htkgttt;
 
@@ -15,6 +16,10 @@ public partial class King : AnimatedEntity
 	[Net, Predicted] public KingAnimationHelper animHelper { get; set; }
 
 	[Net] bool SetupDone { get; set; }
+
+	[Net] float NextGroanTime { get; set; }
+
+	[Net] TimeSince TimeSinceLastGroan { get; set; }
 
 	/// <summary>
 	/// Called when the entity is first created 
@@ -82,6 +87,13 @@ public partial class King : AnimatedEntity
 		Pawn.KillPlayerKing();
 	}
 
+	public async Task DoFart()
+	{
+		Sound fart = PlaySound( OnToilet ? "longfart" : "fart" );
+		await Task.DelaySeconds( 0.5f );
+		PlaySound( "groan" );
+	}
+
 	/// <summary>
 	/// Called every tick, clientside and serverside.
 	/// </summary>
@@ -91,6 +103,22 @@ public partial class King : AnimatedEntity
 		if ( !SetupDone )
 		{
 			return;
+		}
+
+		if ( TimeSinceLastGroan > NextGroanTime )
+		{
+			if ( !OnToilet )
+			{
+				TimeSinceLastGroan = 0f;
+				NextGroanTime = Rand.Float( 15f, 50f );
+				DoFart();
+			}
+			else
+			{
+				TimeSinceLastGroan = 0f;
+				NextGroanTime = Rand.Float( 5f, 15f );
+				DoFart();
+			}
 		}
 
 		if ( GroundEntity is KillTrigger )
@@ -142,18 +170,20 @@ public partial class King : AnimatedEntity
 			animHelper.SitHeightOffset = 7.5f;
 		}
 
-
-		if ( Vector3.DistanceBetween( AssociatedPlayer.Position, Position ) < 55f )
+		float dist = Vector3.DistanceBetween( AssociatedPlayer.Position, Position );
+		if ( dist < 55f )
 		{
 			Vector3 DirectionDifference = (AssociatedPlayer.Position - Position).Normal * 5f;
 
+			Vector3 ClosenessDifference = -Vector3.Up * 10f * (dist / 55f);
+
 			SetAnimParameter( "b_IK_arm", 1 );
-			SetAnimParameter( "left_hand_ik.position", AssociatedPlayer.GetBoneTransform( "hold_R" ).Position - GetBoneTransform( "hand_L" ).Rotation.Forward * 5f + Velocity * Time.Delta );//AssociatedPlayer.GetBoneTransform( "hand_R" ).Position + AssociatedPlayer.GetBoneTransform( "hand_R" ).PointToLocal( AssociatedPlayer.GetBoneTransform( "hold_R" ).Position ) );
+			SetAnimParameter( "left_hand_ik.position", AssociatedPlayer.GetBoneTransform( "hold_R" ).Position - (GetBoneTransform( "hand_L" ).Rotation.Forward * 5f) + ClosenessDifference );//AssociatedPlayer.GetBoneTransform( "hand_R" ).Position + AssociatedPlayer.GetBoneTransform( "hand_R" ).PointToLocal( AssociatedPlayer.GetBoneTransform( "hold_R" ).Position ) );
 
 			SetAnimParameter( "left_hand_ik.rotation", Rotation.LookAt( AssociatedPlayer.GetBoneTransform( "arm_lower_R" ).Position - GetBoneTransform( "arm_lower_L" ).Position - Vector3.Up * 5 ) );
 
 			AssociatedPlayer.SetAnimParameter( "b_IK_arm", 2 );
-			AssociatedPlayer.SetAnimParameter( "right_hand_ik.position", (AssociatedPlayer.Position + Position) / 2f + Vector3.Up * (40f + (OnToilet ? -5f : -(animHelper.DuckLevel * 25f))) - AssociatedPlayer.GetBoneTransform( "hand_R" ).Rotation.Forward * 5f ); // GetBoneTransform( "hand_L" ).Position + GetBoneTransform( "hand_L" ).PointToLocal( GetBoneTransform( "hold_L" ).Position ) );
+			AssociatedPlayer.SetAnimParameter( "right_hand_ik.position", (AssociatedPlayer.Position + Position) / 2f + Vector3.Up * (45f + (OnToilet ? -5f : -(animHelper.DuckLevel * 25f))) - AssociatedPlayer.GetBoneTransform( "hand_R" ).Rotation.Forward * 5f + ClosenessDifference ); // GetBoneTransform( "hand_L" ).Position + GetBoneTransform( "hand_L" ).PointToLocal( GetBoneTransform( "hold_L" ).Position ) );
 
 			AssociatedPlayer.SetAnimParameter( "right_hand_ik.rotation", Rotation.LookAt( -(AssociatedPlayer.GetBoneTransform( "arm_lower_R" ).Position - GetBoneTransform( "arm_lower_L" ).Position) + Vector3.Up * 5 ) );
 		}
@@ -170,7 +200,7 @@ public partial class King : AnimatedEntity
 		{
 			Move( Time.Delta );
 			var walkVelocity = (AssociatedPlayer.Position - Position).WithZ( 0 );
-			if ( walkVelocity.Length > 0.1f )
+			if ( walkVelocity.Length > 0.1f && Vector3.DistanceBetween( AssociatedPlayer.Position, Position ) < 55f )
 			{
 				var turnSpeed = 100f;// walkVelocity.Length.LerpInverse( 0, 100, true );
 				var targetRotation = Rotation.LookAt( walkVelocity.Normal, Vector3.Up ) * Rotation.From( new Angles( 0, -50f, 0 ) );
@@ -198,7 +228,7 @@ public partial class King : AnimatedEntity
 
 	protected virtual void Move( float timeDelta )
 	{
-		var bbox = BBox.FromHeightAndRadius( 64, 4 );
+		var bbox = BBox.FromHeightAndRadius( 32f + (32f * MathF.Abs( animHelper.DuckLevel - 1f )), 4 );
 		//DebugOverlay.Box( Position, bbox.Mins, bbox.Maxs, Color.Green );
 
 		MoveHelper move = new( Position, Velocity );

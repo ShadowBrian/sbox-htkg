@@ -1,0 +1,54 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	data = 
+	{
+		UI = false
+		Volume = 0.8
+		VolumeRandom = 0
+		Pitch = 1
+		PitchRandom = 0
+		Decibels = 65
+		Sounds = 
+		[
+			resource:"audio/sfx/king/groan-01.vsnd",
+			resource:"audio/sfx/king/groan-02.vsnd",
+			resource:"audio/sfx/king/groan-03.vsnd",
+			resource:"audio/sfx/king/groan-04.vsnd",
+			resource:"audio/sfx/king/groan-05.vsnd",
+			resource:"audio/sfx/king/groan-06.vsnd",
+			resource:"audio/sfx/king/groan-07.vsnd",
+			resource:"audio/sfx/king/groan-08.vsnd",
+			resource:"audio/sfx/king/groan-09.vsnd",
+			resource:"audio/sfx/king/groan-10.vsnd",
+			resource:"audio/sfx/king/groan-11.vsnd",
+			resource:"audio/sfx/king/groan-12.vsnd",
+			resource:"audio/sfx/king/groan-13.vsnd",
+			resource:"audio/sfx/king/groan-14.vsnd",
+			resource:"audio/sfx/king/groan-15.vsnd",
+			resource:"audio/sfx/king/groan-16.vsnd",
+			resource:"audio/sfx/king/groan-17.vsnd",
+			resource:"audio/sfx/king/groan-18.vsnd",
+			resource:"audio/sfx/king/groan-19.vsnd",
+			resource:"audio/sfx/king/groan-20.vsnd",
+			resource:"audio/sfx/king/groan-21.vsnd",
+			resource:"audio/sfx/king/groan-22.vsnd",
+			resource:"audio/sfx/king/groan-23.vsnd",
+			resource:"audio/sfx/king/groan-24.vsnd",
+			resource:"audio/sfx/king/groan-25.vsnd",
+			resource:"audio/sfx/king/groan-26.vsnd",
+			resource:"audio/sfx/king/groan-27.vsnd",
+			resource:"audio/sfx/king/groan-28.vsnd",
+			resource:"audio/sfx/king/groan-29.vsnd",
+			resource:"audio/sfx/king/groan-30.vsnd",
+			resource:"audio/sfx/king/groan-31.vsnd",
+			resource:"audio/sfx/king/groan-32.vsnd",
+			resource:"audio/sfx/king/groan-33.vsnd",
+			resource:"audio/sfx/king/groan-34.vsnd",
+			resource:"audio/sfx/king/groan-35.vsnd",
+			resource:"audio/sfx/king/groan-36.vsnd",
+		]
+		SelectionMode = "Random"
+		MaximumDistance = 990.75903
+		MinimumDistance = 49.537952
+	}
+}

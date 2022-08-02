@@ -20,7 +20,7 @@
 					{
 						m_id = 822839208
 					}
-					m_networkMode = "ClientPredicted"
+					m_networkMode = "ServerAuthoritative"
 					m_sNote = ""
 					m_inputConnection = 
 					{
@@ -49,7 +49,7 @@
 					{
 						m_id = 851149127
 					}
-					m_networkMode = "ClientPredicted"
+					m_networkMode = "ServerAuthoritative"
 					m_sNote = ""
 					m_tagSpans = [  ]
 					m_sequenceName = "trap_swinging_axe"

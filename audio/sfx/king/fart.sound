@@ -1,0 +1,30 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	data = 
+	{
+		UI = false
+		Volume = 1
+		VolumeRandom = 0
+		Pitch = 1
+		PitchRandom = 0
+		Decibels = 55
+		Sounds = 
+		[
+			resource:"audio/sfx/king/fart1.vsnd",
+			resource:"audio/sfx/king/fart2.vsnd",
+			resource:"audio/sfx/king/fart3.vsnd",
+			resource:"audio/sfx/king/fart4.vsnd",
+			resource:"audio/sfx/king/fart5.vsnd",
+			resource:"audio/sfx/king/fart6.vsnd",
+			resource:"audio/sfx/king/fart7.vsnd",
+			resource:"audio/sfx/king/fart8.vsnd",
+			resource:"audio/sfx/king/fart9.vsnd",
+			resource:"audio/sfx/king/fart10.vsnd",
+			resource:"audio/sfx/king/fart11.vsnd",
+			resource:"audio/sfx/king/fart12.vsnd",
+		]
+		SelectionMode = "Random"
+		MaximumDistance = 718.4487
+		MinimumDistance = 35.922436
+	}
+}

@@ -5,8 +5,31 @@
 		Walls = 
 		[
 			resource:"models/hedges/hedgemaze_straight_closed.vmdl",
+			resource:"models/hedges/hedgemaze_straight_closed_flowers.vmdl",
+			resource:"models/hedges/hedgemaze_straight_closed_flowers2.vmdl",
+			resource:"models/hedges/hedgemaze_straight_closed_flowers3.vmdl",
+			resource:"models/hedges/hedgemaze_straight_closed_flowers4.vmdl",
+			resource:"models/hedges/hedgemaze_straight_closed_flowers5.vmdl",
+			resource:"models/hedges/hedgemaze_straight_closed_flowers6.vmdl",
+			resource:"models/hedges/hedgemaze_straight_closed.vmdl",
+			resource:"models/hedges/hedgemaze_straight_closed.vmdl",
+			resource:"models/hedges/hedgemaze_straight_closed.vmdl",
+			resource:"models/hedges/hedgemaze_straight_closed.vmdl",
+			resource:"models/hedges/hedgemaze_straight_closed.vmdl",
 		]
-		PassableWalls = null
+		PassableWalls = 
+		[
+			resource:"models/hedges/hedgemaze_arch_open.vmdl",
+			resource:"models/hedges/hedgemaze_arch_open.vmdl",
+			resource:"models/hedges/hedgemaze_arch_open.vmdl",
+			resource:"models/hedges/hedgemaze_arch_open_flowers1.vmdl",
+			resource:"models/hedges/hedgemaze_arch_open_flowers2.vmdl",
+			resource:"models/hedges/hedgemaze_arch_open_flowers3.vmdl",
+			resource:"models/hedges/hedgemaze_arch_open_flowers4.vmdl",
+			resource:"models/hedges/hedgemaze_arch_open_flowers5.vmdl",
+			resource:"models/hedges/hedgemaze_arch_open_flowers6.vmdl",
+			resource:"models/hedges/hedgemaze_arch_open.vmdl",
+		]
 		FloorModels = 
 		[
 			resource:"models/walls/basic_template/basic_template_floor.vmdl",

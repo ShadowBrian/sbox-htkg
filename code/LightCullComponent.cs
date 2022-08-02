@@ -19,7 +19,7 @@ public partial class LightCullComponent : EntityComponent
 
 		light.DynamicShadows = false;
 
-		burningSound = Sound.FromEntity( "torch_burn", Entity );
+		//burningSound = Sound.FromEntity( "torch_burn", Entity );
 
 		light.RenderDirty();
 	}
@@ -50,10 +50,15 @@ public partial class LightCullComponent : EntityComponent
 			if(light.Brightness <= 0.01f )
 			{
 				light.DynamicShadows = false;
+				//burningSound.Stop();
 			}
 			else
 			{
 				light.DynamicShadows = true;
+				/*if ( burningSound.Finished )
+				{
+					burningSound = Sound.FromEntity( "torch_burn", Entity );
+				}*/
 			}
 
 			light.RenderDirty();

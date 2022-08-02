@@ -7,10 +7,14 @@ public partial class BladeComponent : EntityComponent
 
 	int bladecount = 0;
 
+	bool ram;
+
 	protected override void OnActivate()
 	{
 		base.OnActivate();
 		trap = Entity as AnimatedEntity;
+
+		ram = trap.Model.Name.Contains( "ram" );
 
 		for ( int i = 0; i < 10; i++ )
 		{
@@ -31,18 +35,36 @@ public partial class BladeComponent : EntityComponent
 		for ( int i = 0; i < bladecount; i++ )
 		{
 			Transform bladeAttachment = trap.GetAttachment( "blade" + i, true ).Value;
-			//DebugOverlay.Line( bladeAttachment.Position + bladeAttachment.Rotation.Forward *50f, bladeAttachment.Position - bladeAttachment.Rotation.Forward * 50f, Time.Delta, false );
+			//DebugOverlay.Line( bladeAttachment.Position + bladeAttachment.Rotation.Forward *10f, bladeAttachment.Position, Time.Delta, false );
 
-			TraceResult bladeresult = Trace.Ray( bladeAttachment.Position + bladeAttachment.Rotation.Forward * 50f, bladeAttachment.Position + bladeAttachment.Rotation.Backward * 50f ).Run();
-
-			if(bladeresult.Entity is Pawn player )
+			if ( !ram )
 			{
-				player.HitBlade();
+				TraceResult bladeresult = Trace.Ray( bladeAttachment.Position + bladeAttachment.Rotation.Forward * 50f, bladeAttachment.Position + bladeAttachment.Rotation.Backward * 50f ).Run();
+
+				if ( bladeresult.Entity is Pawn player)
+				{
+					player.HitBlade();
+				}
+
+				if ( bladeresult.Entity is King king )
+				{
+					king.HitBlade();
+				}
 			}
-
-			if ( bladeresult.Entity is King king )
+			else
 			{
-				king.HitBlade();
+				TraceResult bladeresult = Trace.Ray( bladeAttachment.Position + bladeAttachment.Rotation.Forward * 10f, bladeAttachment.Position ).Run();
+
+
+				if ( bladeresult.Entity is Pawn player && player.GetAnimParameterFloat( "duck" ) <= 0.5f )
+				{
+					player.HitBlade();
+				}
+
+				if ( bladeresult.Entity is King king && king.GetAnimParameterFloat( "duck" ) <= 0.5f )
+				{
+					king.HitBlade();
+				}
 			}
 		}
 		

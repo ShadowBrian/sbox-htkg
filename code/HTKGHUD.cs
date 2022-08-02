@@ -26,6 +26,8 @@ namespace htkgttt
 			TimerLabel = Add.Label( "timerthing", "Title" );
 			BestLabel = Add.Label( "No best score yet.", "Title2" );
 
+			PlaySound( "medieval_type_beat" );
+
 			WaitingForScores();
 			
 		}

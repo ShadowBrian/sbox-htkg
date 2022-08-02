@@ -29,6 +29,12 @@ public partial class Pawn : Player
 		ClothingContainer.LoadFromClient( client );
 	}
 
+	public override void OnAnimEventFootstep( Vector3 pos, int foot, float volume )
+	{
+		base.OnAnimEventFootstep( pos, foot, volume );
+		PlaySound( "bell_jingle");
+	}
+
 	/// <summary>
 	/// Called when the entity is first created 
 	/// </summary>
@@ -152,7 +158,7 @@ public partial class Pawn : Player
 		{
 			AssociatedKing.AssociatedPlayer = this;
 
-			if ( Vector3.DistanceBetween( AssociatedKing.Position, Position ) > 40f && Vector3.DistanceBetween( AssociatedKing.Position, Position ) < 55f && GroundEntity != null )
+			if ( Vector3.DistanceBetween( AssociatedKing.Position, Position ) > 40f && Vector3.DistanceBetween( AssociatedKing.Position, Position ) < 50f && GroundEntity != null )
 			{
 				AssociatedKing.Velocity = Vector3.Lerp( AssociatedKing.Velocity, - (AssociatedKing.Position - Position) * Time.Delta * 62f, 0.9f );
 			}
