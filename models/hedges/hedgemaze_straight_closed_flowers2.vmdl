@@ -28,25 +28,12 @@
 				]
 			},
 			{
-				_class = "PhysicsShapeList"
-				children = 
-				[
-					{
-						_class = "PhysicsHullFromRender"
-						parent_bone = ""
-						surface_prop = "default"
-						collision_tags = "solid"
-						faceMergeAngle = 20.0
-						maxHullVertices = 32
-					},
-				]
-			},
-			{
 				_class = "RenderMeshList"
 				children = 
 				[
 					{
 						_class = "RenderMeshFile"
+						name = "hedgemaze_straight_closed"
 						filename = "models/hedges/hedgemaze_straight_closed.fbx"
 						import_translation = [ 0.0, 0.0, -0.3 ]
 						import_rotation = [ 0.0, 0.0, 0.0 ]
@@ -76,6 +63,37 @@
 							exclude_by_default = false
 							exception_list = [  ]
 						}
+					},
+				]
+			},
+			{
+				_class = "GameDataList"
+				children = 
+				[
+					{
+						_class = "GenericGameData"
+						game_class = "ao_proxy_capsule"
+						game_keys = 
+						{
+							bonename = ""
+							radius = 1.0
+							point0 = [ 0.0, -2.0, 0.0 ]
+							point1 = [ 0.0, 2.0, 0.0 ]
+						}
+					},
+				]
+			},
+			{
+				_class = "PhysicsShapeList"
+				children = 
+				[
+					{
+						_class = "PhysicsHullFromRender"
+						parent_bone = ""
+						surface_prop = "default"
+						collision_tags = "solid"
+						faceMergeAngle = 20.0
+						maxHullVertices = 32
 					},
 				]
 			},

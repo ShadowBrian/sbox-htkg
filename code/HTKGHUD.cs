@@ -10,7 +10,7 @@ using Sandbox.UI.Construct;
 namespace htkgttt
 {
 	[UseTemplate]
-	public partial class HTKGHUD : RootPanel
+	public partial class HTKGHUD : HudEntity<RootPanel>
 	{
 		Label TimerLabel, BestLabel;
 
@@ -18,23 +18,47 @@ namespace htkgttt
 
 		bool TriggeredMapReboot;
 
+		[ConVar.Replicated( "hgtk_maze_seed" )]
+		public static string hgtk_maze_seed { get; set; } = "";
+
+		[ConVar.Replicated( "hgtk_use_seed" )]
+		public static bool hgtk_use_seed { get; set; } = false;
+
+		public int SeedToUse { get; set; } = 0;
+
+
+		private static int GetIndexInAlphabet( char value )
+		{
+			// Uses the uppercase character unicode code point. 'A' = U+0042 = 65, 'Z' = U+005A = 90
+			char upper = char.ToUpper( value );
+
+			return (int)upper - (int)'A';
+		}
+
+
 		public HTKGHUD()
 		{
-			StyleSheet.Load( "/HTKGHUD.scss" );
-			AddChild<VoiceList>();
-			AddChild<ChatBox>();
-			TimerLabel = Add.Label( "timerthing", "Title" );
-			BestLabel = Add.Label( "No best score yet.", "Title2" );
-
-			PlaySound( "medieval_type_beat" );
+			RootPanel.StyleSheet.Load( "/HTKGHUD.scss" );
+			RootPanel.AddChild<VoiceList>();
+			RootPanel.AddChild<ChatBox>();
+			TimerLabel = RootPanel.Add.Label( "timerthing", "Title" );
+			BestLabel = RootPanel.Add.Label( "No best score yet.", "Title2" );
 
 			WaitingForScores();
-			
 		}
 
 		public async Task WaitingForScores()
 		{
-			LeaderboardResult results = await GameServices.Leaderboard.Query( ident: Global.GameIdent, bucket: Global.MapName );
+			await Task.DelaySeconds( 1f );
+			while( SeedToUse == 0 )
+			{
+				await Task.DelaySeconds( 1f );
+				Log.Trace( "Waiting for seed...");
+				SeedToUse = (Game.Current as HTKGGame).MazeSeed;
+			}
+			Log.Trace( "fetching scores for " + Global.MapName + SeedToUse );
+
+			LeaderboardResult results = await GameServices.Leaderboard.Query( ident: Global.GameIdent, bucket: Global.MapName + SeedToUse );
 
 			if ( results.Entries.Count > 0 )
 			{
@@ -53,7 +77,7 @@ namespace htkgttt
 				BestLabel.Text = "No best global score yet.";
 			}
 
-			results = await GameServices.Leaderboard.Query( ident: Global.GameIdent, bucket: Global.MapName, playerid: Local.PlayerId );
+			results = await GameServices.Leaderboard.Query( ident: Global.GameIdent, bucket: Global.MapName + SeedToUse, playerid: Local.PlayerId );
 
 			if ( results.Entries.Count > 0 )
 			{
@@ -73,10 +97,10 @@ namespace htkgttt
 			}
 		}
 
-		public override void Tick()
+		[Event.Tick.Client]
+		public void Tick()
 		{
-			base.Tick();
-			
+
 			TimeSpan t = TimeSpan.FromSeconds( (Game.Current as HTKGGame).CurrentTimerTime );
 
 			string answer = string.Format( "{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms",
@@ -87,15 +111,15 @@ namespace htkgttt
 
 			TimerLabel.Text = "Timer: " + answer;
 
-			if( (Game.Current as HTKGGame).WonGame )
+			if ( (Game.Current as HTKGGame).WonGame )
 			{
 				TimerLabel.Text += "\nWinner: " + (Game.Current as HTKGGame).WinningPlayer;
-				if(!TriggeredMapReboot )
+				if ( !TriggeredMapReboot )
 				{
 					RebootMapTimer = 0;
 					TriggeredMapReboot = true;
 				}
-				TimerLabel.Text += "\nRestarting map in " + MathF.Round(MathF.Abs(RebootMapTimer - 20f)) + " seconds.";
+				TimerLabel.Text += "\nRestarting map in " + MathF.Round( MathF.Abs( RebootMapTimer - 20f ) ) + " seconds.";
 			}
 		}
 	}

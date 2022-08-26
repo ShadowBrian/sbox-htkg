@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace htkgttt;
 
@@ -33,6 +34,28 @@ public partial class Pawn : Player
 	{
 		base.OnAnimEventFootstep( pos, foot, volume );
 		PlaySound( "bell_jingle");
+	}
+
+	Entity soundSource;
+	public override void ClientSpawn()
+	{
+		base.ClientSpawn();
+
+		if ( Local.Pawn == this )
+		{
+
+			soundSource = new Entity();
+
+			DoBGM();
+		}
+
+	}
+
+	public async Task DoBGM()
+	{
+		soundSource.PlaySound( "bgintro" );
+		await Task.DelayRealtimeSeconds( 8f );
+		soundSource.PlaySound( "bgloop" );
 	}
 
 	/// <summary>

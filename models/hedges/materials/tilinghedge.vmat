@@ -12,6 +12,7 @@ Layer0
 
 	//---- Translucent ----
 	F_ALPHA_TEST 1
+	F_PREPASS_ALPHA_TEST 1
 
 	//---- Ambient Occlusion ----
 	g_flAmbientOcclusionDirectDiffuse "1.000"
@@ -57,5 +58,5 @@ Layer0
 	//---- Transmission ----
 	g_flDiffuseExponent "1.000"
 	g_flDiffuseWrap "1.000"
-	g_vDiffuseWrapColor "[1.000000 0.501961 0.301961 0.000000]"
+	g_vDiffuseWrapColor "[0.207843 0.996078 0.086275 0.000000]"
 }

@@ -20,6 +20,9 @@ namespace htkgttt
 
 		[Net]Entity MapParentEnt {  get; set; }
 
+		bool UseSeed;
+		int MazeSeed;
+
 		public override void Spawn()
 		{
 			base.Spawn();
@@ -34,6 +37,7 @@ namespace htkgttt
 				maze = MazeCreator.Instance.maze;
 
 				scale = MazeCreator.Instance.scale * 0.0075f * 0.7f;
+
 				MapParentEnt = new Entity();
 				Generate();
 			}

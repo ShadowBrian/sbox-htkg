@@ -32,7 +32,7 @@
 		]
 		FloorModels = 
 		[
-			resource:"models/walls/basic_template/basic_template_floor.vmdl",
+			resource:"models/hedges/flooring.vmdl",
 		]
 	}
 }

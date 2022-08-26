@@ -21,6 +21,9 @@ public partial class King : AnimatedEntity
 
 	[Net] TimeSince TimeSinceLastGroan { get; set; }
 
+	[ConVar.Replicated( "hgtk_use_seed" )]
+	public static bool hgtk_use_seed { get; set; } = false;
+
 	/// <summary>
 	/// Called when the entity is first created 
 	/// </summary>
@@ -105,6 +108,12 @@ public partial class King : AnimatedEntity
 			return;
 		}
 
+		if(AssociatedPlayer == null )
+		{
+			Delete( );
+			return;
+		}
+
 		if ( TimeSinceLastGroan > NextGroanTime )
 		{
 			if ( !OnToilet )
@@ -141,13 +150,11 @@ public partial class King : AnimatedEntity
 		}
 
 
-		if ( Vector3.DistanceBetween( Position, toil.Position ) < 55f && !OnToilet && IsServer )
+		if ( Vector3.DistanceBetween( Position, toil.Position ) < 55f && !OnToilet && IsServer && !(Game.Current as HTKGGame).WonGame )
 		{
 			if ( (Game.Current as HTKGGame).CurrentTimerTime > 20f )
 			{
-				GameServices.SubmitScore( AssociatedPlayer.Client.PlayerId, (Game.Current as HTKGGame).CurrentTimerTime );
-
-				GameServices.EndGame();
+				GameServices.UpdateLeaderboard( AssociatedPlayer.Client.PlayerId, (Game.Current as HTKGGame).CurrentTimerTime, Global.MapName + MazeCreator.Instance.SeedToUse );
 			}
 
 			OnToilet = true;

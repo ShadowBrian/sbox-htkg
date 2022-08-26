@@ -1,0 +1,56 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "blendable.vfx"
+
+	F_MULTIBLEND 1 // 2 Layers
+
+	//---- Color ----
+	g_flModelTintAmount "1.000"
+	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
+
+	//---- Fade ----
+	g_flFadeExponent "1.000"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Lighting ----
+	g_flDirectionalLightmapMinZ "0.050"
+	g_flDirectionalLightmapStrength "1.000"
+
+	//---- Material A ----
+	g_flTintColorA "[1.000000 1.000000 1.000000 0.000000]"
+	TextureAmbientOcclusionA "models/hedges/materials/whitegravel_ao.psd"
+	TextureBlendMaskA "models/hedges/materials/whitegravel_ao.psd"
+	TextureColorA "models/hedges/materials/whitegravel_color.psd"
+	TextureMetalnessA "materials/default/default_metal.tga"
+	TextureNormalA "models/hedges/materials/whitegravel_normal.psd"
+	TextureRoughnessA "materials/default/default_rough.tga"
+	TextureTintMaskA "materials/default/default.tga"
+
+	//---- Material B ----
+	g_flBlendSoftnessB "0.500"
+	g_flTintColorB "[1.000000 1.000000 1.000000 0.000000]"
+	g_vTexCoordScale2 "[0.500 0.500]"
+	TextureAmbientOcclusionB "models/hedges/materials/grass_ao.png"
+	TextureBlendMaskB "models/hedges/materials/grass_disp.png"
+	TextureColorB "models/hedges/materials/grass_green/grass_green_color.psd"
+	TextureMetalnessB "materials/default/default_metal.tga"
+	TextureNormalB "models/hedges/materials/grass_normal.png"
+	TextureRoughnessB "models/hedges/materials/grass_spec.png"
+	TextureTintMaskB "materials/default/default.tga"
+
+	//---- Texture Coordinates ----
+	g_nScaleTexCoordUByModelScaleAxis "0"
+	g_nScaleTexCoordVByModelScaleAxis "0"
+	g_vTexCoordOffset "[0.000 0.000]"
+	g_vTexCoordScale "[1.000 1.000]"
+	g_vTexCoordScrollSpeed "[0.000 0.000]"
+
+	SystemAttributes
+	{
+		PhysicsSurfaceProperties "dirt"
+	}
+}

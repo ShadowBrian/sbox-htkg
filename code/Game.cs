@@ -25,6 +25,8 @@ public partial class HTKGGame : Sandbox.Game
 
 	[Net]public string WinningPlayer { get; set; }
 
+	[Net] public int MazeSeed { get; set; } = 0;
+
 	public HTKGGame()
 	{
 		if ( IsClient )

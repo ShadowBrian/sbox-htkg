@@ -18,7 +18,10 @@
     "MinPlayers": 1,
     "GameNetworkType": "Multiplayer",
     "MapSelect": "Tagged",
-    "MapList": [],
+    "MapList": [
+      "hgtk_hedge",
+      "hgtk_dungeon"
+    ],
     "RankType": "Best",
     "PerMapRanking": true,
     "LeaderboardType": "Ascending",
@@ -84,6 +87,22 @@
     "ControlModes": {
       "Keyboard": true,
       "Gamepad": true
+    },
+    "GameSettings": {
+      "hgtk_maze_seed": {
+        "Choices": [],
+        "ConVarName": "hgtk_maze_seed",
+        "DisplayName": "Maze Seed",
+        "DefaultValue": "mycustomseed",
+        "Maximum": 1E+10
+      },
+      "hgtk_use_seed": {
+        "DisplayType": "Boolean",
+        "Choices": [],
+        "ConVarName": "hgtk_use_seed",
+        "DisplayName": "Use Custom Seed",
+        "DefaultValue": "false"
+      }
     }
   }
 }

@@ -6,6 +6,16 @@
 		children = 
 		[
 			{
+				_class = "PrefabList"
+				children = 
+				[
+					{
+						_class = "Prefab"
+						target_file = "models/hedges/hedgemaze_straight_closed_prefab.vmdl"
+					},
+				]
+			},
+			{
 				_class = "MaterialGroupList"
 				children = 
 				[
@@ -43,6 +53,7 @@
 				[
 					{
 						_class = "RenderMeshFile"
+						name = "hedgemaze_straight_closed"
 						filename = "models/hedges/hedgemaze_straight_closed.fbx"
 						import_translation = [ 0.0, 0.0, -0.3 ]
 						import_rotation = [ 0.0, 0.0, 0.0 ]
@@ -53,13 +64,8 @@
 						parent_bone = ""
 						import_filter = 
 						{
-							exclude_by_default = true
-							exception_list = 
-							[
-								"pCube9hedge",
-								"pCube9hedge1",
-								"pCube9hedge2",
-							]
+							exclude_by_default = false
+							exception_list = [  ]
 						}
 					},
 				]

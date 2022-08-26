@@ -10,12 +10,13 @@ namespace htkgttt
 {
 	[Library( "ent_htk_mazegenerator" )]
 	[HammerEntity]
-	public class MazeCreator : Entity
+	public partial class MazeCreator : Entity
 	{
 		[Property, ResourceType( "htkgwall" )]
 		public string PossibleWalls { get; set; } = "";
 
-		public static MazeCreator Instance;
+		[Net]
+		public static MazeCreator Instance { get; set; }
 
 		public WallState[,] maze;
 
@@ -36,9 +37,18 @@ namespace htkgttt
 			MazeCreator.Instance.Regenerate();
 		}
 
+		[ConVar.Replicated( "hgtk_maze_seed" )]
+		public static string hgtk_maze_seed { get; set; } = "";
+
+		[ConVar.Replicated( "hgtk_use_seed" )]
+		public static bool hgtk_use_seed { get; set; } = false;
+
 		public List<string> WallPieces { get; set; } = new List<string>();
 		public List<string> PassableWallPieces { get; set; } = new List<string>();
 		public List<string> FloorPieces { get; set; } = new List<string>();
+
+		[Net]
+		public int SeedToUse { get; set; } = 0;
 
 		public override void Spawn()
 		{
@@ -49,17 +59,51 @@ namespace htkgttt
 			scale /= Complexity;
 
 			// Store a reference to the food resource.
-			MazeWallResource wallResource;
-			var getSuccess = ResourceLibrary.TryGet( PossibleWalls, out wallResource );
+			//MazeWallResource wallResource;
+			MazeWallResource wallResource = ResourceLibrary.Get<MazeWallResource>( PossibleWalls + "_c" );
 
-			if ( getSuccess )
+			WallPieces = wallResource.Walls;
+			PassableWallPieces = wallResource.PassableWalls;
+			FloorPieces = wallResource.FloorModels;
+
+
+			if ( hgtk_use_seed )
 			{
-				WallPieces = wallResource.Walls;
-				PassableWallPieces = wallResource.PassableWalls;
-				FloorPieces = wallResource.FloorModels;
+				string seed = "";
+
+				hgtk_maze_seed = hgtk_maze_seed.Replace( " ", "" );//replace spaces
+
+				foreach ( char item in hgtk_maze_seed )
+				{
+					seed += GetIndexInAlphabet( item ).ToString();//get each letter's index in alphabet
+				}
+
+				long seed2 = long.Parse( seed.Truncate(14) );//truncate length to fit inside an int64
+
+				seed2 = seed2 % int.MaxValue;//% it to fit within an int32
+
+				Rand.SetSeed( (int)seed2 );//convert to int32
+
+				Log.Trace( "Set seed to: " + seed2 + " translated from: " + hgtk_maze_seed );
+				SeedToUse = (int)seed2;
+			}
+			else
+			{
+				SeedToUse = (int)MathF.Floor( float.Parse((System.DateTime.Now.DayOfYear / 7f) + "" + (System.DateTime.Now.Year + 2)) );
+				Rand.SetSeed( SeedToUse );
 			}
 
+			(Game.Current as HTKGGame).MazeSeed = SeedToUse;
+
 			GenerateMaze();
+		}
+
+		private static int GetIndexInAlphabet( char value )
+		{
+			// Uses the uppercase character unicode code point. 'A' = U+0042 = 65, 'Z' = U+005A = 90
+			char upper = char.ToUpper( value );
+
+			return (int)upper - (int)'A';
 		}
 
 		public void Regenerate()
@@ -90,9 +134,9 @@ namespace htkgttt
 			bool ThisIsEnd = false;
 			bool ThisIsStart = false;
 
-			Rand.SetSeed( (int)MathF.Floor( System.DateTime.Now.DayOfYear / 7f ) + System.DateTime.Now.Year + 2 );
 
 			if ( PossibleWalls != "" )
+			{
 
 				for ( int i = 0; i < width; ++i )
 				{
@@ -351,17 +395,17 @@ namespace htkgttt
 					}
 				}
 
-			/*if ( All.OfType<Pawn>().FirstOrDefault() != null )
-			{
-				foreach ( var pawn in All.OfType<Pawn>() )
+				/*if ( All.OfType<Pawn>().FirstOrDefault() != null )
 				{
-					pawn.Position = StartPos;
-				}
-			}*/
+					foreach ( var pawn in All.OfType<Pawn>() )
+					{
+						pawn.Position = StartPos;
+					}
+				}*/
+
+			}
 
 		}
-
-
 
 	}
 }
