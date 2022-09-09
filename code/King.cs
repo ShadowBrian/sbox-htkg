@@ -65,6 +65,8 @@ public partial class King : AnimatedEntity
 
 		animHelper = new KingAnimationHelper( this );
 		SetupDone = true;
+
+
 	}
 
 	[Net] public Vector3 InputVelocity { get; set; }
@@ -97,6 +99,62 @@ public partial class King : AnimatedEntity
 		PlaySound( "groan" );
 	}
 
+	public async void DoForcedScoreSubmit( Client cl, float score )
+	{
+		Leaderboard? board = await Leaderboard.FindOrCreate( Global.MapName + MazeCreator.Instance.SeedToUse, true );
+
+		if ( board.HasValue )
+		{
+			Log.Trace( "Found leaderboard, submitting!" );
+			Log.Trace( "Submitting " + (int)MathF.Round( (float)TimeSpan.FromSeconds( score ).TotalMilliseconds ) + "milliseconds from " + score + " seconds" );
+			LeaderboardUpdate? result = await board.Value.Submit( cl, (int)MathF.Round( (float)TimeSpan.FromSeconds( score ).TotalMilliseconds ), true );
+
+			if ( result.HasValue )
+			{
+				if ( result.Value.RankChange > 0 )
+				{
+					Log.Trace( "Rank changed by " + result.Value.RankChange + " spots." );
+				}
+				else
+				{
+					Log.Trace( "Your rank didn't change :(" );
+				}
+			}
+			else
+			{
+				Log.Trace( "Some kind of error occured trying to submit your score!" );
+			}
+		}
+	}
+
+	public async void DoScoreSubmit( Client cl, float score )
+	{
+		Leaderboard? board = await Leaderboard.FindOrCreate( Global.MapName + MazeCreator.Instance.SeedToUse, true );
+
+		if ( board.HasValue )
+		{
+			Log.Trace( "Found leaderboard, submitting!" );
+			Log.Trace( "Submitting " + (int)MathF.Round( (float)TimeSpan.FromSeconds( score ).TotalMilliseconds ) + "milliseconds from " + score + " seconds" );
+			LeaderboardUpdate? result = await board.Value.Submit( cl, (int)MathF.Round( (float)TimeSpan.FromSeconds( score ).TotalMilliseconds) );
+
+			if ( result.HasValue )
+			{
+				if ( result.Value.RankChange > 0 )
+				{
+					Log.Trace( "Rank changed by " + result.Value.RankChange + " spots." );
+				}
+				else
+				{
+					Log.Trace( "Your rank didn't change :(" );
+				}
+			}
+			else
+			{
+				Log.Trace( "Some kind of error occured trying to submit your score!" );
+			}
+		}
+	}
+
 	/// <summary>
 	/// Called every tick, clientside and serverside.
 	/// </summary>
@@ -108,9 +166,9 @@ public partial class King : AnimatedEntity
 			return;
 		}
 
-		if(AssociatedPlayer == null )
+		if ( AssociatedPlayer == null )
 		{
-			Delete( );
+			Delete();
 			return;
 		}
 
@@ -154,7 +212,8 @@ public partial class King : AnimatedEntity
 		{
 			if ( (Game.Current as HTKGGame).CurrentTimerTime > 20f )
 			{
-				GameServices.UpdateLeaderboard( AssociatedPlayer.Client.PlayerId, (Game.Current as HTKGGame).CurrentTimerTime, Global.MapName + MazeCreator.Instance.SeedToUse );
+				//GameServices.UpdateLeaderboard( AssociatedPlayer.Client.PlayerId, (Game.Current as HTKGGame).CurrentTimerTime, Global.MapName + MazeCreator.Instance.SeedToUse );
+				DoScoreSubmit( AssociatedPlayer.Client, (Game.Current as HTKGGame).CurrentTimerTime );
 			}
 
 			OnToilet = true;

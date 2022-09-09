@@ -58,7 +58,54 @@ namespace htkgttt
 			}
 			Log.Trace( "fetching scores for " + Global.MapName + SeedToUse );
 
-			LeaderboardResult results = await GameServices.Leaderboard.Query( ident: Global.GameIdent, bucket: Global.MapName + SeedToUse );
+			Leaderboard? board = await Leaderboard.Find( Global.MapName + SeedToUse );
+
+			if ( board.HasValue )
+			{
+				LeaderboardEntry[] entries = await board.Value.GetGlobalScores( 10 );
+				if ( entries.Length > 0 ) {
+					TimeSpan t = TimeSpan.FromMilliseconds( entries.First().Score );
+
+					string answer = string.Format( "{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms",
+									t.Hours,
+									t.Minutes,
+									t.Seconds,
+									t.Milliseconds );
+
+					BestLabel.Text = "Global Best: " + answer;
+				}
+				else
+				{
+					BestLabel.Text = "No best global score yet.";
+				}
+
+				LeaderboardEntry? personal = await board.Value.GetScore(Local.PlayerId );
+
+				if ( personal.HasValue )
+				{
+					TimeSpan t = TimeSpan.FromMilliseconds( personal.Value.Score );
+
+					Log.Trace( personal.Value.Score );
+
+					string answer = string.Format( "{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms",
+									t.Hours,
+									t.Minutes,
+									t.Seconds,
+									t.Milliseconds );
+
+					BestLabel.Text += "\nPersonal Best: " + answer;
+				}
+				else
+				{
+					BestLabel.Text += "\nNo personal best score yet.";
+				}
+			}
+			else
+			{
+				BestLabel.Text = "No best global score yet.";
+			}
+
+			/*LeaderboardResult results = await GameServices.Leaderboard.Query( ident: Global.GameIdent, bucket: Global.MapName + SeedToUse );
 
 			if ( results.Entries.Count > 0 )
 			{
@@ -94,7 +141,7 @@ namespace htkgttt
 			else
 			{
 				BestLabel.Text += "\nNo personal best score yet.";
-			}
+			}*/
 		}
 
 		[Event.Tick.Client]

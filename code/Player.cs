@@ -168,7 +168,7 @@ public partial class Player : AnimatedEntity
 		//AddCollisionLayer( CollisionLayer.Player );
 		Tags.Add( "player" );
 
-		SetupPhysicsFromAABB( PhysicsMotionType.Dynamic, new Vector3( -16, -16, 0 ), new Vector3( 16, 16, 72 ) );
+		SetupPhysicsFromAABB( PhysicsMotionType.Keyframed, new Vector3( -16, -16, 0 ), new Vector3( 16, 16, 72 ) );
 
 		//var capsule = new Capsule( new Vector3( 0, 0, 16 ), new Vector3( 0, 0, 72 - 16 ), 32 );
 		//var phys = SetupPhysicsFromCapsule( PhysicsMotionType.Dynamic, capsule );
