@@ -19,8 +19,8 @@
     "GameNetworkType": "Multiplayer",
     "MapSelect": "Tagged",
     "MapList": [
-      "hgtk_hedge",
-      "hgtk_dungeon"
+      "shadb.hgtk_hedge",
+      "shadb.hgtk_dungeon"
     ],
     "RankType": "Best",
     "PerMapRanking": true,
