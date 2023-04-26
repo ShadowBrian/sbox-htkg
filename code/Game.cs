@@ -17,19 +17,19 @@ namespace htkgttt;
 /// You can use this to create things like HUDs and declare which player class
 /// to use for spawned players.
 /// </summary>
-public partial class HTKGGame : Sandbox.Game
+public partial class HTKGGame : GameManager
 {
-	[Net]public  float CurrentTimerTime { get; set; } = 0f;
+	[Net] public float CurrentTimerTime { get; set; } = 0f;
 
-	[Net, Predicted]public bool WonGame { get; set; }
+	[Net, Predicted] public bool WonGame { get; set; }
 
-	[Net]public string WinningPlayer { get; set; }
+	[Net] public string WinningPlayer { get; set; }
 
 	[Net] public int MazeSeed { get; set; } = 0;
 
 	public HTKGGame()
 	{
-		if ( IsClient )
+		if ( Game.IsClient )
 		{
 			HTKGHUD hud = new HTKGHUD();
 		}
@@ -38,41 +38,35 @@ public partial class HTKGGame : Sandbox.Game
 	bool TimerRebootStarted;
 	TimeSince RebootTimer;
 
-	public override void Simulate( Client cl )
+	public override void Simulate( IClient cl )
 	{
 		base.Simulate( cl );
 
-		if ( !IsClient && !WonGame )
+		if ( !Game.IsClient && !WonGame )
 		{
 			CurrentTimerTime = Time.Now;
 
-		}else if( !IsClient && !TimerRebootStarted )
+		}
+		else if ( !Game.IsClient && !TimerRebootStarted )
 		{
 			TimerRebootStarted = true;
 			RebootTimer = 0f;
 		}
 
-		if ( !IsClient && TimerRebootStarted && RebootTimer > 20f )
+		if ( !Game.IsClient && TimerRebootStarted && RebootTimer > 20f )
 		{
-			Global.ChangeLevel( Global.MapName );
+			Game.ChangeLevel( Game.Server.MapIdent );
 		}
 	}
 
 	[ConCmd.Server]
-	public void KingSatOnToilet(string player)
+	public void KingSatOnToilet( string player )
 	{
-		(Game.Current as HTKGGame).WonGame = true;
-		(Game.Current as HTKGGame).WinningPlayer = player;
+		(GameManager.Current as HTKGGame).WonGame = true;
+		(GameManager.Current as HTKGGame).WinningPlayer = player;
 	}
 
-	public override void PostCameraSetup( ref CameraSetup camSetup )
-	{
-		base.PostCameraSetup( ref camSetup );
-
-		camSetup.ZNear = 1f;
-	}
-
-	public override void OnKilled(Entity playerPawn)
+	public override void OnKilled( Entity playerPawn )
 	{
 		base.OnKilled( playerPawn );
 		Pawn.BecomeRagdollOnClient( Vector3.Up * 100f, 0, playerPawn as AnimatedEntity );
@@ -80,7 +74,7 @@ public partial class HTKGGame : Sandbox.Game
 		var randomSpawnPoint = spawnpoints.OrderBy( x => Guid.NewGuid() ).FirstOrDefault();
 		playerPawn.Position = randomSpawnPoint.Position;
 		playerPawn.Rotation = randomSpawnPoint.Rotation;
-		
+
 	}
 
 	public void OnKilledKing( King king )
@@ -111,7 +105,7 @@ public partial class HTKGGame : Sandbox.Game
 		{
 			var spawnpoint = Entity.All.OfType<MazeCreator>().FirstOrDefault().StartPos;
 		}
-		
+
 
 		foreach ( PointLightEntity light in Entity.All.OfType<PointLightEntity>() )
 		{
@@ -130,7 +124,7 @@ public partial class HTKGGame : Sandbox.Game
 			tx.Rotation = randomSpawnPoint.Rotation;
 			King king = new King();
 			king.AssociatedPlayer = pawn;
-			
+
 			king.Owner = pawn.Owner;
 			pawn.AssociatedKing = king;
 			tx.Position += (Vector3.Random * 60f).WithZ( 0 );
@@ -139,7 +133,7 @@ public partial class HTKGGame : Sandbox.Game
 			king.Transform = tx;
 			MazeMapCarriable map = new MazeMapCarriable();
 			map.Position = pawn.Position;
-			map.SetParent(pawn,true);
+			map.SetParent( pawn, true );
 			pawn.ActiveChild = map;
 			map.ActiveStart( pawn );
 			pawn.BasicInventory.Add( map );

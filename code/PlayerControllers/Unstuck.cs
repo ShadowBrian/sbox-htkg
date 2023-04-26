@@ -39,12 +39,12 @@ namespace htkgttt
 			// Client can't jiggle its way out, needs to wait for
 			// server correction to come
 			//
-			if ( Host.IsClient )
+			if ( Game.IsClient )
 				return true;
 
 			int AttemptsPerTick = 20;
 
-			for ( int i=0; i< AttemptsPerTick; i++ )
+			for ( int i = 0; i < AttemptsPerTick; i++ )
 			{
 				var pos = Controller.Position + Vector3.Random.Normal * (((float)StuckTries) / 2.0f);
 
@@ -60,7 +60,7 @@ namespace htkgttt
 				{
 					if ( BasePlayerController.Debug )
 					{
-						DebugOverlay.Text( $"unstuck after {StuckTries} tries ({StuckTries* AttemptsPerTick} tests)", Controller.Position, Color.Green, 5.0f );
+						DebugOverlay.Text( $"unstuck after {StuckTries} tries ({StuckTries * AttemptsPerTick} tests)", Controller.Position, Color.Green, 5.0f );
 						DebugOverlay.Line( pos, Controller.Position, Color.Green, 5.0f, false );
 					}
 

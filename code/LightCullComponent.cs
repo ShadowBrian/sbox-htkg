@@ -35,7 +35,7 @@ public partial class LightCullComponent : EntityComponent
 
 			//DebugOverlay.Line( light.Position, Local.Pawn.Position + Vector3.Up * 45f, UnShadowed ? Color.Red : Color.Green );
 
-			if ( UnShadowed )// && dist > 300
+			if ( UnShadowed )
 			{
 				brightnessFade = 0f;
 			}
@@ -50,15 +50,10 @@ public partial class LightCullComponent : EntityComponent
 			if(light.Brightness <= 0.01f )
 			{
 				light.DynamicShadows = false;
-				//burningSound.Stop();
 			}
 			else
 			{
 				light.DynamicShadows = true;
-				/*if ( burningSound.Finished )
-				{
-					burningSound = Sound.FromEntity( "torch_burn", Entity );
-				}*/
 			}
 
 			light.RenderDirty();

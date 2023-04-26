@@ -15,7 +15,6 @@ namespace htkgttt
 		[Property, ResourceType( "htkgwall" )]
 		public string PossibleWalls { get; set; } = "";
 
-		[Net]
 		public static MazeCreator Instance { get; set; }
 
 		public WallState[,] maze;
@@ -78,7 +77,7 @@ namespace htkgttt
 					seed += GetIndexInAlphabet( item ).ToString();//get each letter's index in alphabet
 				}
 
-				long seed2 = long.Parse( seed.Truncate(14) );//truncate length to fit inside an int64
+				long seed2 = long.Parse( seed.Truncate( 14 ) );//truncate length to fit inside an int64
 
 				seed2 = seed2 % int.MaxValue;//% it to fit within an int32
 
@@ -89,7 +88,7 @@ namespace htkgttt
 			}
 			else
 			{
-				SeedToUse = (int)MathF.Floor( float.Parse((System.DateTime.Now.DayOfYear / 7f) + "" + (System.DateTime.Now.Year + 2)) );
+				SeedToUse = (int)MathF.Floor( float.Parse( (System.DateTime.Now.DayOfYear / 7f) + "" + (System.DateTime.Now.Year + 2) ) );
 				Rand.SetSeed( SeedToUse );
 			}
 
