@@ -1,0 +1,168 @@
+{
+  "RootObject": {
+    "__guid": "9af715ab-143b-4469-a99f-6387adda4a2d",
+    "Flags": 0,
+    "Name": "trap_ram",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.SkinnedModelRenderer",
+        "__guid": "630c9e7e-8f8d-4a1b-ab28-a7285e75477a",
+        "AnimationGraph": null,
+        "BodyGroups": 18446744073709551615,
+        "BoneMergeTarget": null,
+        "CreateAttachments": false,
+        "CreateBoneObjects": true,
+        "MaterialGroup": null,
+        "MaterialOverride": null,
+        "Model": "models/walls/dungeon/trap_ram.vmdl",
+        "Morphs": {},
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Parameters": {
+          "bools": {},
+          "ints": {},
+          "floats": {},
+          "vectors": {},
+          "rotations": {}
+        },
+        "PlaybackRate": 1,
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
+        "RenderType": "On",
+        "Sequence": {
+          "Name": null
+        },
+        "Tint": "1,1,1,1",
+        "UseAnimGraph": true
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "17e0d686-cb5b-44aa-9e22-dad6cd2b09fc",
+        "Flags": 4,
+        "Name": "base",
+        "Position": "-0.0000004346439,-0.0000001788139,-1.046354",
+        "Rotation": "0.659975,0.2538365,0.659975,0.2538365",
+        "Enabled": true,
+        "Children": [
+          {
+            "__guid": "6adff936-e2ab-4a79-af96-3585f256e9da",
+            "Flags": 4,
+            "Name": "Rside1",
+            "Position": "3.597075,0.000001430511,0.000001806636",
+            "Rotation": "0.3918156,0.9200438,0.0000002238843,-0.00000004650693",
+            "Enabled": true,
+            "Children": [
+              {
+                "__guid": "f12ec3ae-2743-494e-8533-8e42d01497bd",
+                "Flags": 4,
+                "Name": "Rside2",
+                "Position": "1.780867,0.0000001192093,-0.0000005983105",
+                "Rotation": "-0.01561927,0.999878,0.0000006259291,-0.0000000468863",
+                "Enabled": true,
+                "Children": [
+                  {
+                    "__guid": "4dafb6d1-5e14-431c-bca3-5ddbe9558395",
+                    "Flags": 0,
+                    "Name": "Object",
+                    "Tags": "killtrigger",
+                    "Enabled": true,
+                    "Components": [
+                      {
+                        "__type": "Sandbox.BoxCollider",
+                        "__guid": "f26fcd2a-1ab3-4a09-874e-51e200323e90",
+                        "Center": "0,0,0",
+                        "Friction": null,
+                        "IsTrigger": false,
+                        "OnComponentDestroy": null,
+                        "OnComponentDisabled": null,
+                        "OnComponentEnabled": null,
+                        "OnComponentFixedUpdate": null,
+                        "OnComponentStart": null,
+                        "OnComponentUpdate": null,
+                        "OnObjectTriggerEnter": null,
+                        "OnObjectTriggerExit": null,
+                        "OnTriggerEnter": null,
+                        "OnTriggerExit": null,
+                        "Scale": "0.5999999,1,1",
+                        "Static": false,
+                        "Surface": null,
+                        "SurfaceVelocity": "0,0,0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "__guid": "c87994b6-ff6b-4542-9748-0e33a4597fb2",
+            "Flags": 4,
+            "Name": "Lside1",
+            "Position": "0.3666282,3.578342,0.0000006513374",
+            "Rotation": "0.0000001514641,0.000000008144269,0.9073564,0.4203621",
+            "Enabled": true,
+            "Children": [
+              {
+                "__guid": "96cad17b-25a8-469d-bdd2-e11e8d6edd70",
+                "Flags": 4,
+                "Name": "LSide2",
+                "Position": "-1.780865,0.000001072884,0.0000006812546",
+                "Rotation": "-0.01561927,0.999878,0.0000006295772,0.00000002686659",
+                "Enabled": true,
+                "Children": [
+                  {
+                    "__guid": "23e27f82-3e62-408f-99e3-88ce9219351d",
+                    "Flags": 0,
+                    "Name": "Object",
+                    "Tags": "killtrigger",
+                    "Enabled": true,
+                    "Components": [
+                      {
+                        "__type": "Sandbox.BoxCollider",
+                        "__guid": "90fee1c3-f237-4953-a897-c1f935ffdf90",
+                        "Center": "0,0,0",
+                        "Friction": null,
+                        "IsTrigger": false,
+                        "OnComponentDestroy": null,
+                        "OnComponentDisabled": null,
+                        "OnComponentEnabled": null,
+                        "OnComponentFixedUpdate": null,
+                        "OnComponentStart": null,
+                        "OnComponentUpdate": null,
+                        "OnObjectTriggerEnter": null,
+                        "OnObjectTriggerExit": null,
+                        "OnTriggerEnter": null,
+                        "OnTriggerExit": null,
+                        "Scale": "0.5999999,1,1",
+                        "Static": false,
+                        "Surface": null,
+                        "SurfaceVelocity": "0,0,0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

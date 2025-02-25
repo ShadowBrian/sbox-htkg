@@ -1,0 +1,152 @@
+{
+  "RootObject": {
+    "__guid": "42a5c4ff-fc12-4270-b5b0-e7f56a1379e6",
+    "Flags": 0,
+    "Name": "trap_swinging_axe",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.SkinnedModelRenderer",
+        "__guid": "c9ad9907-02f9-409b-81ae-35222a82fb09",
+        "AnimationGraph": null,
+        "BodyGroups": 18446744073709551615,
+        "BoneMergeTarget": null,
+        "CreateAttachments": false,
+        "CreateBoneObjects": true,
+        "MaterialGroup": null,
+        "MaterialOverride": null,
+        "Model": "models/walls/dungeon/trap_swinging_axe.vmdl",
+        "Morphs": {},
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Parameters": {
+          "bools": {},
+          "ints": {},
+          "floats": {},
+          "vectors": {},
+          "rotations": {}
+        },
+        "PlaybackRate": 1,
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
+        "RenderType": "On",
+        "Sequence": {
+          "Name": null
+        },
+        "Tint": "1,1,1,1",
+        "UseAnimGraph": true
+      },
+      {
+        "__type": "Sandbox.ModelCollider",
+        "__guid": "69ba2f03-ad32-4898-8a6d-fa2be141a86b",
+        "Friction": null,
+        "IsTrigger": false,
+        "Model": "models/walls/dungeon/trap_swinging_axe.vmdl",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OnObjectTriggerEnter": null,
+        "OnObjectTriggerExit": null,
+        "OnTriggerEnter": null,
+        "OnTriggerExit": null,
+        "Static": false,
+        "Surface": null,
+        "SurfaceVelocity": "0,0,0"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "03923fcf-82e7-4c9b-a069-4810745caa48",
+        "Flags": 4,
+        "Name": "joint1",
+        "Rotation": "0.7071068,0.00000006181724,0.7071068,-0.00000006181724",
+        "Enabled": true,
+        "Children": [
+          {
+            "__guid": "384a760d-6066-4d19-bfaf-2cc34b69f91a",
+            "Flags": 4,
+            "Name": "joint2",
+            "Position": "6.952345,0.0000004143922,0.00000580149",
+            "Rotation": "0.0000001685874,0.00000008429372,-0.7071066,0.7071069",
+            "Enabled": true,
+            "Children": [
+              {
+                "__guid": "122baa79-231f-44c3-a76a-4c0cb2999ad1",
+                "Flags": 0,
+                "Name": "DeathCollider",
+                "Position": "-0.000002741814,-6.952346,-0.000005722046",
+                "Rotation": "-0.5000001,-0.5000001,-0.5000003,0.4999998",
+                "Tags": "killtrigger",
+                "Enabled": true,
+                "Components": [
+                  {
+                    "__type": "Sandbox.ModelCollider",
+                    "__guid": "a42da5df-367f-4231-8f34-0cf9ffd0a6a0",
+                    "Friction": null,
+                    "IsTrigger": false,
+                    "Model": "models/walls/dungeon/swinging_axe_collider.vmdl",
+                    "OnComponentDestroy": null,
+                    "OnComponentDisabled": null,
+                    "OnComponentEnabled": null,
+                    "OnComponentFixedUpdate": null,
+                    "OnComponentStart": null,
+                    "OnComponentUpdate": null,
+                    "OnObjectTriggerEnter": null,
+                    "OnObjectTriggerExit": null,
+                    "OnTriggerEnter": null,
+                    "OnTriggerExit": null,
+                    "Static": false,
+                    "Surface": null,
+                    "SurfaceVelocity": "0,0,0"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

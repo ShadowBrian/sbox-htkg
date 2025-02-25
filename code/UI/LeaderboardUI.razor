@@ -1,0 +1,104 @@
+@using Sandbox
+@using Sandbox.UI
+@using System.Collections.Generic
+@using Sandbox.Services
+@using System
+@using System.Linq
+@using System.Threading.Tasks
+@inherits PanelComponent
+
+<div class="leaderboard-container">
+	<h2>@StatsName.Replace("_", " ")</h2>
+	<div class="leaderboard-table">
+		<div class="leaderboard-row header">
+			<div class="cell">Rank</div>
+			<div class="cell">Name</div>
+			<div class="cell">Score</div>
+		</div>
+		@if (LeaderboardEntries?.Any() == true)
+		{
+			@foreach (var entry in LeaderboardEntries)
+			{
+				<div class="leaderboard-row">
+					<div class="cell">@entry.Rank</div>
+					<div class="cell">@entry.DisplayName</div>
+					@if(IsTimeBased){
+
+						<div class="cell">@FormatAsTime(entry.Value)</div>
+					}
+					else
+					{
+						<div class="cell">@entry.Value</div>
+					}
+				</div>
+			}
+		}
+		else
+		{
+			<div class="leaderboard-row">
+				<div class="cell" colspan="3">No leaderboard data available.</div>
+			</div>
+		}
+	</div>
+</div>
+
+@code {
+	public static LeaderboardUI Instance;
+
+	public List<Leaderboards.Board2.Entry> LeaderboardEntries { get; private set; } = new();
+
+	[Property]
+	public string StatsName { get; set; } = "dronekills";
+
+	[Property]
+	public bool IsTimeBased { get; set; } = false;
+
+	[Property]
+	public List<string> LeaderboardCycleList { get; set; } = new();
+
+	public string FormatAsTime(double value)
+	{
+		return $"{Math.Floor(value / 60):00}:{value % 60:00}.{(value * 100) % 100:00}";
+	}
+
+	protected override void OnStart()
+	{
+		Instance = this;
+		if(LeaderboardCycleList.Count > 0){
+			CycleThroughList();
+		}
+		else
+		{
+			RefreshLeaderboard();
+		}
+	}
+
+	int CurrentIndex = 0;
+
+	public async void CycleThroughList()
+	{
+		StatsName = LeaderboardCycleList[CurrentIndex].Replace(" ", "_").ToLower();
+		RefreshLeaderboard();
+		await Task.DelaySeconds(5f);
+		CurrentIndex++;
+		if(CurrentIndex >= LeaderboardCycleList.Count){
+			CurrentIndex = 0;
+		}
+		CycleThroughList();
+	}
+
+	private async Task RefreshLeaderboard()
+	{
+		await Task.DelaySeconds(1f);
+		var board = Leaderboards.GetFromStat(Game.Ident, StatsName);
+		board.SetAggregationMax();
+		if (IsTimeBased)
+        {
+            board.SetSortAscending();
+        }
+        await board.Refresh();
+        
+        LeaderboardEntries = board.Entries.ToList();
+        StateHasChanged();
+    }
+}

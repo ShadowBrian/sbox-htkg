@@ -1,0 +1,26 @@
+{
+	"UI": false,
+	"Volume": 1,
+	"VolumeRandom": 0,
+	"Pitch": 1,
+	"PitchRandom": 0,
+	"Decibels": 55,
+	"Sounds":
+	[
+		"audio/sfx/king/fart1.vsnd",
+		"audio/sfx/king/fart2.vsnd",
+		"audio/sfx/king/fart3.vsnd",
+		"audio/sfx/king/fart4.vsnd",
+		"audio/sfx/king/fart5.vsnd",
+		"audio/sfx/king/fart6.vsnd",
+		"audio/sfx/king/fart7.vsnd",
+		"audio/sfx/king/fart8.vsnd",
+		"audio/sfx/king/fart9.vsnd",
+		"audio/sfx/king/fart10.vsnd",
+		"audio/sfx/king/fart11.vsnd",
+		"audio/sfx/king/fart12.vsnd"
+	],
+	"SelectionMode": "Random",
+	"MaximumDistance": 718.448700,
+	"MinimumDistance": 35.922436
+}

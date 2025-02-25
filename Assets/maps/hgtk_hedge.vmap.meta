@@ -1,0 +1,26 @@
+{
+  "publish": {
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "Hgtk Hedge",
+      "Type": "map",
+      "Org": "shadb",
+      "Ident": "hgtk_hedge",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [
+        "shadb.htkg"
+      ],
+      "EditorReferences": null,
+      "IsWhitelistDisabled": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/hgtk_hedge.vmap",
+        "ParentPackage": "shadb.htkg",
+        "GameSupport": [
+          "shadb.htkg"
+        ]
+      }
+    }
+  }
+}

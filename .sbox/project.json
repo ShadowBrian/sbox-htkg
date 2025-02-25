@@ -1,0 +1,197 @@
+{
+  "AssetBrowser.History": {
+    "Value": "[\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\\\\walls\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\\\\characters\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\\\\characters\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\\\\cosmetics\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\\\\cosmetics\\\\kingoutfit\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\\\\cosmetics\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\\\\cosmetics\\\\jester\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\\\\cosmetics\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\\\\hedges\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\models\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\resources\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\maps\u0022]",
+    "Timeout": 1743111639,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.HistoryIdx": {
+    "Value": "19",
+    "Timeout": 1743111639,
+    "DeleteAt": 0
+  },
+  "SceneView.Viewport0.Settings": {
+    "Value": "{\u0022CameraPosition\u0022:\u0022-1067.623,1089.236,158.1312\u0022,\u0022CameraRotation\u0022:\u0022-0.01190296,0.1247748,0.09421553,0.98763\u0022,\u0022View\u0022:0,\u0022RenderMode\u0022:0,\u0022WireframeMode\u0022:false,\u0022EnablePostProcessing\u0022:true,\u0022EnablePrefabLighting\u0022:true,\u0022ShowGrid\u0022:true,\u0022GridOpacity\u0022:0.2,\u0022GridAxis\u0022:0,\u0022CameraOrthoHeight\u0022:1000}",
+    "Timeout": 1743111700,
+    "DeleteAt": 0
+  },
+  "Window.SboxSceneEditor.Dock": {
+    "Value": "{\u0022floatingWindows\u0022:[],\u0022mainWrapper\u0022:{\u0022geometry\u0022:\u0022AdnQywADAAAAAAAAAAAAAAAACdIAAATmAAAAAAAAAAAAAAnSAAAE5gAAAAAAAAAACgAAAAAAAAAAAAAACdIAAATm\u0022,\u0022splitter\u0022:{\u0022items\u0022:[{\u0022items\u0022:[{\u0022items\u0022:[{\u0022currentIndex\u0022:1,\u0022objects\u0022:[{\u0022data\u0022:null,\u0022managedType\u0022:\u0022LibraryManagerDock\u0022,\u0022name\u0022:\u0022Library Manager\u0022},{\u0022data\u0022:null,\u0022managedType\u0022:\u0022SceneDock\u0022,\u0022name\u0022:\u0022SceneDock:scenes/game.scene\u0022}],\u0022type\u0022:\u0022area\u0022},{\u0022currentIndex\u0022:0,\u0022objects\u0022:[{\u0022data\u0022:null,\u0022managedType\u0022:\u0022\u0022,\u0022name\u0022:\u0022GameFrame\u0022},{\u0022data\u0022:null,\u0022managedType\u0022:\u0022ConsoleWidget\u0022,\u0022name\u0022:\u0022Console\u0022},{\u0022data\u0022:null,\u0022managedType\u0022:\u0022MixerDock\u0022,\u0022name\u0022:\u0022Mixer\u0022}],\u0022type\u0022:\u0022area\u0022}],\u0022state\u0022:\u0022AAAA/wAAAAEAAAACAAACeAAAAmsA/////wEAAAACAA==\u0022,\u0022type\u0022:\u0022splitter\u0022},{\u0022items\u0022:[{\u0022currentIndex\u0022:0,\u0022objects\u0022:[{\u0022data\u0022:null,\u0022managedType\u0022:\u0022SceneTreeWidget\u0022,\u0022name\u0022:\u0022Hierarchy\u0022},{\u0022data\u0022:null,\u0022managedType\u0022:\u0022PanelInspectorWidget\u0022,\u0022name\u0022:\u0022UI Panels\u0022}],\u0022type\u0022:\u0022area\u0022},{\u0022currentIndex\u0022:0,\u0022objects\u0022:[{\u0022data\u0022:null,\u0022managedType\u0022:\u0022MainAssetBrowser\u0022,\u0022name\u0022:\u0022Asset Browser\u0022}],\u0022type\u0022:\u0022area\u0022},{\u0022currentIndex\u0022:0,\u0022objects\u0022:[{\u0022data\u0022:null,\u0022managedType\u0022:\u0022Inspector\u0022,\u0022name\u0022:\u0022Inspector\u0022}],\u0022type\u0022:\u0022area\u0022}],\u0022state\u0022:\u0022AAAA/wAAAAEAAAADAAABvQAAAq4AAAGwAP////8BAAAAAQA=\u0022,\u0022type\u0022:\u0022splitter\u0022}],\u0022state\u0022:\u0022AAAA/wAAAAEAAAACAAADrAAABiMA/////wEAAAABAA==\u0022,\u0022type\u0022:\u0022splitter\u0022}],\u0022state\u0022:\u0022AAAA/wAAAAEAAAABAAAJzwD/////AQAAAAEA\u0022,\u0022type\u0022:\u0022splitter\u0022}},\u0022toolWindowManagerStateFormat\u0022:1}",
+    "Timeout": 1743111700,
+    "DeleteAt": 0
+  },
+  "LastSaveLocation.scene": {
+    "Value": "E:\\sboxaddons\\htkgttt\\Assets\\scenes",
+    "Timeout": 1742836390,
+    "DeleteAt": 0
+  },
+  "scenes/game.scene.Viewport0": {
+    "Value": "{\u0022CameraPosition\u0022:\u0022-1067.623,1089.236,158.1312\u0022,\u0022CameraRotation\u0022:\u0022-0.01190296,0.1247748,0.09421553,0.98763\u0022,\u0022CameraOrthoHeight\u0022:1000}",
+    "Timeout": 1743111700,
+    "DeleteAt": 0
+  },
+  "gizmo.settings": {
+    "Value": "{\u0022EditMode\u0022:\u0022position\u0022,\u0022Selection\u0022:true,\u0022ViewMode\u0022:\u00223d\u0022,\u0022GizmosEnabled\u0022:true,\u0022GizmoScale\u0022:1,\u0022GridSpacing\u0022:16,\u0022SnapToGrid\u0022:true,\u0022SnapToAngles\u0022:true,\u0022AngleSpacing\u0022:15,\u0022GlobalSpace\u0022:false,\u0022DebugActionGraphs\u0022:false}",
+    "Timeout": 1743111700,
+    "DeleteAt": 0
+  },
+  "SceneView.Layout": {
+    "Value": "{\u0022Layout\u0022:0,\u0022SplitterState\u0022:[]}",
+    "Timeout": 1743111700,
+    "DeleteAt": 0
+  },
+  "scene.lastopened": {
+    "Value": "[\u0022scenes/game.scene\u0022]",
+    "Timeout": 1743111639,
+    "DeleteAt": 0
+  },
+  ".Viewport0": {
+    "Value": "{\u0022CameraPosition\u0022:\u0022-959.1878,1076.961,34.21395\u0022,\u0022CameraRotation\u0022:\u0022-0.07939126,0.09361455,0.6419005,0.7568997\u0022,\u0022CameraOrthoHeight\u0022:1000}",
+    "Timeout": 1743102616,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Model.History": {
+    "Value": "[\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022e:\\\\sboxaddons\\\\htkgttt\\\\assets\\\\models\\\\cosmetics\\\\kingoutfit\u0022,\u0022e:\\\\sboxaddons\\\\htkgttt\\\\assets\\\\models\\\\cosmetics\u0022,\u0022e:\\\\sboxaddons\\\\htkgttt\\\\assets\\\\models\u0022]",
+    "Timeout": 1743085461,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Model.HistoryIdx": {
+    "Value": "3",
+    "Timeout": 1743085461,
+    "DeleteAt": 0
+  },
+  "prefabs/player.prefab.Viewport0": {
+    "Value": "{\u0022CameraPosition\u0022:\u0022124.0258,26.28285,105.3449\u0022,\u0022CameraRotation\u0022:\u00220.1411586,0.01309514,-0.9856681,0.09143943\u0022,\u0022CameraOrthoHeight\u0022:1000}",
+    "Timeout": 1743099522,
+    "DeleteAt": 0
+  },
+  "AssetLocations.ShowBaseContent": {
+    "Value": "true",
+    "Timeout": 1743111700,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Model.ViewMode": {
+    "Value": "1",
+    "Timeout": 1743085459,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Model.ShowJunkFiles": {
+    "Value": "false",
+    "Timeout": 1743085459,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Model.HideNonAssets": {
+    "Value": "false",
+    "Timeout": 1743085459,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Model.ShowRecursiveFiles": {
+    "Value": "true",
+    "Timeout": 1743085459,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Material.History": {
+    "Value": "[\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022S:\\\\Program Files\\\\Steam\\\\steamapps\\\\common\\\\sbox\\\\core\u0022,\u0022S:\\\\Program Files\\\\Steam\\\\steamapps\\\\common\\\\sbox\\\\addons\\\\citizen\\\\assets\u0022]",
+    "Timeout": 1743008454,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Material.HistoryIdx": {
+    "Value": "3",
+    "Timeout": 1743008454,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Material.ViewMode": {
+    "Value": "1",
+    "Timeout": 1743008451,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Material.ShowJunkFiles": {
+    "Value": "false",
+    "Timeout": 1743008451,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Material.HideNonAssets": {
+    "Value": "false",
+    "Timeout": 1743008451,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Material.ShowRecursiveFiles": {
+    "Value": "true",
+    "Timeout": 1743008451,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Scene.History": {
+    "Value": "[\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\scenes\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\\\\scenes\u0022]",
+    "Timeout": 1743100195,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Scene.HistoryIdx": {
+    "Value": "4",
+    "Timeout": 1743100195,
+    "DeleteAt": 0
+  },
+  "NewInstance.Args": {
+    "Value": "wa",
+    "Timeout": 1743017831,
+    "DeleteAt": 0
+  },
+  "prefabs/king.prefab.Viewport0": {
+    "Value": "{\u0022CameraPosition\u0022:\u0022-44.22984,-45.22985,98.96467\u0022,\u0022CameraRotation\u0022:\u0022-0.1459706,0.331744,0.3753625,0.8530777\u0022,\u0022CameraOrthoHeight\u0022:1000}",
+    "Timeout": 1743099523,
+    "DeleteAt": 0
+  },
+  "prefabs/trap_swinging_axe.prefab.Viewport0": {
+    "Value": "{\u0022CameraPosition\u0022:\u0022-35.0297,-35.02971,49.53949\u0022,\u0022CameraRotation\u0022:\u0022-0.1629106,0.3533802,0.3856634,0.8365682\u0022,\u0022CameraOrthoHeight\u0022:1000}",
+    "Timeout": 1743083277,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.DMX File,SMD Source File,FBX Source File.History": {
+    "Value": "[\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022e:\\\\sboxaddons\\\\htkgttt\\\\assets\\\\models\\\\walls\\\\dungeon\u0022,\u0022e:\\\\sboxaddons\\\\htkgttt\\\\assets\\\\models\\\\walls\\\\dungeon\u0022]",
+    "Timeout": 1743087138,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.DMX File,SMD Source File,FBX Source File.HistoryIdx": {
+    "Value": "2",
+    "Timeout": 1743087138,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.DMX File,SMD Source File,FBX Source File.ViewMode": {
+    "Value": "1",
+    "Timeout": 1743087138,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.DMX File,SMD Source File,FBX Source File.ShowJunkFiles": {
+    "Value": "false",
+    "Timeout": 1743087138,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.DMX File,SMD Source File,FBX Source File.HideNonAssets": {
+    "Value": "false",
+    "Timeout": 1743087138,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.DMX File,SMD Source File,FBX Source File.ShowRecursiveFiles": {
+    "Value": "false",
+    "Timeout": 1743087138,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Maze Wall Tileset.History": {
+    "Value": "[\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022e:\\\\sboxaddons\\\\htkgttt\\\\assets\\\\resources\u0022,\u0022e:\\\\sboxaddons\\\\htkgttt\\\\assets\\\\resources\u0022]",
+    "Timeout": 1743097810,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Maze Wall Tileset.HistoryIdx": {
+    "Value": "2",
+    "Timeout": 1743097810,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Map.History": {
+    "Value": "[\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022,\u0022E:\\\\sboxaddons\\\\htkgttt\\\\Assets\u0022]",
+    "Timeout": 1743102459,
+    "DeleteAt": 0
+  },
+  "AssetBrowser.Map.HistoryIdx": {
+    "Value": "2",
+    "Timeout": 1743102459,
+    "DeleteAt": 0
+  }
+}

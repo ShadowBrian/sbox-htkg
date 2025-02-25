@@ -1,0 +1,18 @@
+{
+	"UI": false,
+	"Volume": 1,
+	"VolumeRandom": 0,
+	"Pitch": 1,
+	"PitchRandom": 0,
+	"Decibels": 55,
+	"Sounds":
+	[
+		"audio/sfx/king/longfart1.vsnd",
+		"audio/sfx/king/longfart2.vsnd",
+		"audio/sfx/king/longfart3.vsnd",
+		"audio/sfx/king/longfart4.vsnd"
+	],
+	"SelectionMode": "Random",
+	"MaximumDistance": 718.448700,
+	"MinimumDistance": 35.922436
+}

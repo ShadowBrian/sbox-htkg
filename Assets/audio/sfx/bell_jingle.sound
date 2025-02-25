@@ -1,0 +1,17 @@
+{
+	"UI": false,
+	"Volume": 0.500000,
+	"VolumeRandom": 0,
+	"Pitch": 1.250000,
+	"PitchRandom": 0.100000,
+	"Decibels": 35,
+	"Sounds":
+	[
+		"audio/sfx/bell_jingle1.vsnd",
+		"audio/sfx/bell_jingle2.vsnd",
+		"audio/sfx/bell_jingle3.vsnd"
+	],
+	"SelectionMode": "Random",
+	"MaximumDistance": 309.983370,
+	"MinimumDistance": 15.499168
+}

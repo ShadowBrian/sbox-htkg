@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
-using Sandbox;
 
 [Flags]
 public enum WallState
@@ -49,7 +44,7 @@ public static class MazeGenerator
 	private static WallState[,] ApplyRecursiveBacktracker( WallState[,] maze, int width, int height )
 	{
 		// here we make changes
-		var rng = new System.Random( (int)MathF.Floor( System.DateTime.Now.DayOfYear / 7f ) + System.DateTime.Now.Year + 2 + Global.MapName.Length);
+		var rng = new System.Random( SeedControl.Seed );// + Global.MapName.Length );
 		var positionStack = new Stack<Position>();
 		var position = new Position { X = rng.Next( 0, width ), Y = rng.Next( 0, height ) };
 

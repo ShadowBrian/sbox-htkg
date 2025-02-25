@@ -1,0 +1,79 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using System;
+@inherits PanelComponent
+
+<root>
+    @if (TimerRunning)
+    {
+        <div class="timer">@TimeDisplay</div>
+    }
+
+    @if (ShowWinner)
+    {
+        <div class="winner-screen">
+            <div class="title">@($"{WinnerName} wins!")</div>
+            <div class="final-time">@($"Time: {FinalTimeDisplay}")</div>
+        </div>
+    }
+</root>
+
+@code {
+    public static HelpKingHUD LocalInstance;
+    public float Timer;
+    private bool TimerRunning;
+    private bool ShowWinner;
+    private string WinnerName = "";
+    private string TimeDisplay => $"{(int)Timer / 60:D2}:{(int)Timer % 60:D2}.{(int)((Timer % 1) * 100):D2}";
+    private string FinalTimeDisplay = "";
+
+    public bool Ended;
+
+    protected override int BuildHash()
+    {
+        return HashCode.Combine(Timer, FinalTimeDisplay, WinnerName);
+    }
+
+    protected override void OnStart()
+    {
+        base.OnStart();
+        LocalInstance = this;
+        Timer = 0f;
+        StartTimer();
+    }
+
+    protected override void OnUpdate()
+    {
+        if (TimerRunning)
+            Timer += Time.Delta;
+    }
+
+    public void StartTimer()
+    {
+        Timer = 0f;
+        TimerRunning = true;
+        ShowWinner = false;
+    }
+
+    [Rpc.Broadcast]
+    public void StopTimer(string winnerName, float SubmittedTime)
+    {
+        Ended = true;
+        TimerRunning = false;
+        ShowWinner = true;
+        WinnerName = winnerName;
+        var SubmittedTimeDisplay = $"{(int)SubmittedTime / 60:D2}:{(int)SubmittedTime % 60:D2}.{(int)((SubmittedTime % 1) * 100):D2}";
+        FinalTimeDisplay = SubmittedTimeDisplay;
+        if (Connection.Local.DisplayName == winnerName){
+            var seed = SeedControl.Seed;
+            Sandbox.Services.Stats.SetValue("Daily-" + seed, SubmittedTime);
+        }
+       
+        RestartMap();
+    }
+
+    public async void RestartMap(){
+        await Task.DelaySeconds(10f);
+        Scene.LoadFromFile("scenes/game.scene");
+    }
+}

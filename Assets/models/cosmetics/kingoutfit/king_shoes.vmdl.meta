@@ -1,0 +1,27 @@
+{
+  "publish": {
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "King - Shoes",
+      "Type": "model",
+      "Org": "shadb",
+      "Ident": "king_shoes",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "MenuResources": null,
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": null,
+      "EditorReferences": null,
+      "Metadata": {
+        "SingleAssetSource": "models/cosmetics/kingoutfit/king_shoes.vmdl",
+        "Summary": "",
+        "Description": "",
+        "Public": true
+      }
+    }
+  }
+}

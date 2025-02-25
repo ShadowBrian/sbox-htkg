@@ -1,37 +1,36 @@
 ﻿using Sandbox;
 
 namespace htkgttt;
-public partial class LightCullComponent : EntityComponent
+public partial class LightCullComponent : Component
 {
-	public PointLightEntity light;
+	public PointLight light;
 
 	float brightnessFade;
 
-	Sound burningSound;
+	//Sound burningSound;
 
-	protected override void OnActivate()
+	protected override void OnEnabled()
 	{
-		base.OnActivate();
-		light = Entity as PointLightEntity;
-		light.Color = Color.Orange;
-		light.Brightness = 0.1f;
-		light.Range = 256;
+		base.OnEnabled();
+		light = GetComponent<PointLight>();
+		light.LightColor = Color.Orange;
+		light.Attenuation = 0.1f;
+		light.Radius = 256;
 
-		light.DynamicShadows = false;
+		light.Shadows = false;
 
 		//burningSound = Sound.FromEntity( "torch_burn", Entity );
 
-		light.RenderDirty();
+		//light.RenderDirty();
 	}
 
-	[Event.Tick.Client]
-	public void OnTick()
+	protected override void OnUpdate()
 	{
-		if(light != null && Local.Pawn != null )
+		if ( light.IsValid() )
 		{
-			float dist = Vector3.DistanceBetween( light.Position, Local.Pawn.Position + Local.Pawn.Rotation.Forward * 128f );
-			bool UnShadowed = Trace.Ray( light.Position, Local.Pawn.Position + Vector3.Up * 45f ).Ignore( Local.Pawn ).Ignore( (Local.Pawn as Pawn).AssociatedKing ).Run().Hit 
-							&& Trace.Ray( light.Position, (Local.Pawn as Player).CameraMode.Position ).Ignore( Local.Pawn ).Ignore( (Local.Pawn as Pawn).AssociatedKing ).Run().Hit;
+			float dist = Vector3.DistanceBetween( light.WorldPosition, Scene.Camera.WorldPosition + Scene.Camera.WorldRotation.Forward * 128f );
+			bool UnShadowed = Scene.Trace.Ray( light.WorldPosition, Scene.Camera.WorldPosition + Vector3.Up * 45f ).Run().Hit;
+			//&& Scene.Trace.Ray( light.WorldPosition, (Local.Pawn as Player).CameraMode.Position ).Ignore( Local.Pawn ).Ignore( (Local.Pawn as Pawn).AssociatedKing ).Run().Hit;
 
 			//DebugOverlay.Line( light.Position, Local.Pawn.Position + Vector3.Up * 45f, UnShadowed ? Color.Red : Color.Green );
 
@@ -40,23 +39,23 @@ public partial class LightCullComponent : EntityComponent
 				brightnessFade = 0f;
 			}
 
-			if( !UnShadowed || dist < 128 )
+			if ( !UnShadowed || dist < 128 )
 			{
 				brightnessFade = 0.5f;
 			}
 
-			light.Brightness = MathX.Lerp( light.Brightness, brightnessFade, 0.5f * Time.Delta );
+			light.Attenuation = MathX.Lerp( light.Attenuation, brightnessFade, 0.5f * Time.Delta );
 
-			if(light.Brightness <= 0.01f )
+			if ( light.Attenuation <= 0.01f )
 			{
-				light.DynamicShadows = false;
+				light.Shadows = false;
 			}
 			else
 			{
-				light.DynamicShadows = true;
+				light.Shadows = true;
 			}
 
-			light.RenderDirty();
+			//light.RenderDirty();
 		}
 	}
 }

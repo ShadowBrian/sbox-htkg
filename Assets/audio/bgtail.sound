@@ -1,0 +1,15 @@
+{
+	"UI": true,
+	"Volume": 0.130000,
+	"VolumeRandom": 0,
+	"Pitch": 1,
+	"PitchRandom": 0,
+	"Decibels": 180,
+	"Sounds":
+	[
+		"audio/medieval music - reverb tail.vsnd"
+	],
+	"SelectionMode": "Random",
+	"MaximumDistance": 7384.377000,
+	"MinimumDistance": 369.218840
+}

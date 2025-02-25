@@ -1,0 +1,21 @@
+{
+	"Walls":
+	[
+		"models/walls/dungeon/brickwall_closed.vmdl",
+		"models/walls/dungeon/brickwall_lit.vmdl",
+		"models/walls/dungeon/brickwall_closed.vmdl",
+		"models/walls/dungeon/brickwall_closed.vmdl"
+	],
+	"PassableWalls":
+	[
+		"models/walls/dungeon/brickwall_broken.vmdl",
+		"models/walls/dungeon/trap_swinging_axe.vmdl",
+		"models/walls/dungeon/trap_ram.vmdl"
+	],
+	"FloorModels":
+	[
+		"models/walls/dungeon/floor_tiles.vmdl",
+		"models/walls/dungeon/floor_tiles_left.vmdl",
+		"models/walls/dungeon/floor_tiles_right.vmdl"
+	]
+}

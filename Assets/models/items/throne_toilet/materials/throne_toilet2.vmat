@@ -1,0 +1,8 @@
+"Layer0"
+{
+	"shader"		"shaders/complex.shader"
+	"TextureColor"		"models/items/throne_toilet/materials/throne_toilet_color.psd"
+	"TextureAmbientOcclusion"		"models/items/throne_toilet/materials/throne_toilet_ao.psd"
+	"TextureNormal"		"models/items/throne_toilet/materials/throne_toilet_normal.psd"
+	"TextureRoughness"		"models/items/throne_toilet/materials/throne_toilet_rough.psd"
+}

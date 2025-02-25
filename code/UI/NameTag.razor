@@ -1,0 +1,11 @@
+@using Sandbox.UI
+@using Sandbox
+@inherits PanelComponent
+
+<root>
+    <div class="name-tag">@(IsKing ? Network.Owner.DisplayName + "'s king": Network.Owner.DisplayName)</div>
+</root>
+
+@code {
+    [Property] public bool IsKing{ get; set; }
+}

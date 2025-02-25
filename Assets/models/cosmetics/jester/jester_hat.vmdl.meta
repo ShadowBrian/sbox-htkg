@@ -1,0 +1,27 @@
+{
+  "publish": {
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "Jester hat",
+      "Type": "model",
+      "Org": "shadb",
+      "Ident": "jester_hat",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "MenuResources": null,
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": null,
+      "EditorReferences": null,
+      "Metadata": {
+        "SingleAssetSource": "models/cosmetics/jester/jester_hat.vmdl",
+        "Summary": "",
+        "Description": "",
+        "Public": true
+      }
+    }
+  }
+}

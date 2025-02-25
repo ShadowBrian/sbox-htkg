@@ -1,0 +1,26 @@
+{
+  "publish": {
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "Hgtk Dungeon",
+      "Type": "map",
+      "Org": "shadb",
+      "Ident": "hgtk_dungeon",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [
+        "shadb.htkg"
+      ],
+      "EditorReferences": null,
+      "IsWhitelistDisabled": false,
+      "Metadata": {
+        "SingleAssetSource": "maps/hgtk_dungeon.vmap",
+        "ParentPackage": "shadb.htkg",
+        "GameSupport": [
+          "shadb.htkg"
+        ]
+      }
+    }
+  }
+}

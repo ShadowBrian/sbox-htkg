@@ -1,0 +1,232 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc29:version{3cec427c-1b0e-4d48-a90a-0436f33a6041} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "MaterialGroupList"
+				children = 
+				[
+					{
+						_class = "DefaultMaterialGroup"
+						remaps = 
+						[
+							{
+								from = "phong1.vmat"
+								to = "models/walls/dungeon/materials/ram.vmat"
+							},
+						]
+						use_global_default = false
+						global_default_material = ""
+					},
+				]
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						filename = "models/walls/dungeon/brick_wall_ram.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = true
+							exception_list = 
+							[
+								"pCylinder1",
+							]
+						}
+					},
+				]
+			},
+			{
+				_class = "PhysicsShapeList"
+				children = 
+				[
+					{
+						_class = "PhysicsShapeBox"
+						disabled = true
+						parent_bone = "Rside2"
+						surface_prop = "default"
+						collision_tags = "solid"
+						origin = [ 0.55, 0.0, 0.0 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 1.25, 1.0, 1.0 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						disabled = true
+						parent_bone = "LSide2"
+						surface_prop = "default"
+						collision_tags = "solid"
+						origin = [ -0.55, 0.0, 0.0 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 1.25, 1.0, 1.0 ]
+					},
+				]
+			},
+			{
+				_class = "AttachmentList"
+				children = 
+				[
+					{
+						_class = "Attachment"
+						name = "blade"
+						parent_bone = "base"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ 0.0, 0.0, 0.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "blade0"
+						parent_bone = "LSide2"
+						relative_origin = [ -0.493778, 0.299908, -0.361973 ]
+						relative_angles = [ 0.000025, 0.120778, -0.0001 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "blade1"
+						parent_bone = "LSide2"
+						relative_origin = [ -0.549635, 0.299956, 0.390464 ]
+						relative_angles = [ 0.000025, 0.12078, -0.0001 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "blade2"
+						parent_bone = "LSide2"
+						relative_origin = [ -0.502453, 0.299934, 0.0 ]
+						relative_angles = [ 0.000025, 0.120783, -0.0001 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "blade5"
+						parent_bone = "Rside2"
+						relative_origin = [ 0.493778, -0.299908, -0.361973 ]
+						relative_angles = [ 0.0, 180.0, 0.0 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "blade3"
+						parent_bone = "Rside2"
+						relative_origin = [ 0.549635, -0.299956, 0.390464 ]
+						relative_angles = [ 0.000025, 180.0, -0.0001 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+					{
+						_class = "Attachment"
+						name = "blade4"
+						parent_bone = "Rside2"
+						relative_origin = [ 0.502453, -0.299934, 0.0 ]
+						relative_angles = [ 0.000025, 180.0, -0.0001 ]
+						weight = 1.0
+						ignore_rotation = false
+					},
+				]
+			},
+			{
+				_class = "AnimationList"
+				children = 
+				[
+					{
+						_class = "AnimFile"
+						name = "brick_wall_ram"
+						children = 
+						[
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 4
+								event_keys = 
+								{
+									name = "ram_hit"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = ""
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_PLAYSOUND"
+								event_frame = 4
+								event_keys = 
+								{
+									name = "ram_crack"
+									stop_on_seq_change = false
+									use_layer_sequence = false
+									tags = ""
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_GENERIC_EVENT"
+								event_frame = 4
+								event_keys = 
+								{
+									TypeName = "Closed"
+									Int = 0
+									Float = 0.0
+									Vector = [ 0.0, 0.0, 0.0 ]
+									StringData = ""
+								}
+							},
+						]
+						activity_name = ""
+						activity_weight = 1
+						weight_list_name = ""
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						anim_markup_ordered = false
+						disable_compression = false
+						disable_interpolation = false
+						enable_scale = false
+						source_filename = "models/walls/dungeon/brick_wall_ram.fbx"
+						start_frame = -1
+						end_frame = -1
+						framerate = 20.0
+						take = 0
+						reverse = false
+					},
+				]
+				default_root_bone_name = ""
+			},
+			{
+				_class = "ModelModifierList"
+				children = 
+				[
+					{
+						_class = "ModelModifier_Translate"
+						translation = [ 0.0, 0.0, -1.0 ]
+					},
+				]
+			},
+		]
+		model_archetype = ""
+		primary_associated_entity = ""
+		anim_graph_name = "models/walls/dungeon/trap_ram.vanmgrph"
+		base_model_name = ""
+	}
+}

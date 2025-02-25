@@ -1,0 +1,20 @@
+{
+	"BaseSurface": "surfaces/concrete.surface",
+	"AudioMaterial": "surfaces/concrete.audiomat",
+	"Description": "",
+	"Friction": 0.800000,
+	"Elasticity": 0.250000,
+	"Density": 2000,
+	"Thickness": -1,
+	"Dampening": 0,
+	"BounceThreshold": 40,
+	"ImpactEffects":
+	{
+	},
+	"Sounds":
+	{
+	},
+	"Breakables":
+	{
+	}
+}

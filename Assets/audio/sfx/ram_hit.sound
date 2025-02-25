@@ -1,0 +1,19 @@
+{
+	"UI": false,
+	"Volume": 1,
+	"VolumeRandom": 0.060000,
+	"Pitch": 0.590000,
+	"PitchRandom": 0.100000,
+	"Decibels": 80,
+	"Sounds":
+	[
+		"audio/sfx/ram_hit1.vsnd",
+		"audio/sfx/ram_hit2.vsnd",
+		"audio/sfx/ram_hit3.vsnd",
+		"audio/sfx/ram_hit4.vsnd",
+		"audio/sfx/ram_hit5.vsnd"
+	],
+	"SelectionMode": "Random",
+	"MaximumDistance": 1484.321400,
+	"MinimumDistance": 74.216070
+}

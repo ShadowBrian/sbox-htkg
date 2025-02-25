@@ -1,0 +1,50 @@
+HelpKingHUD {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-family: Poppins;
+    font-weight: bold;
+
+
+    .timer {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 48px;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px 20px;
+        border-radius: 12px;
+        color: white;
+        text-shadow: 2px 2px 4px black;
+    }
+
+    .winner-screen {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 30px 50px;
+        border-radius: 20px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            font-size: 64px;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px black;
+        }
+
+        .final-time {
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px black;
+        }
+    }
+}
